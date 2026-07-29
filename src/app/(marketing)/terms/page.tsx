@@ -10,18 +10,17 @@ export default function TermsPage() {
       </p>
 
       <p className="mb-6">
-        Welcome to CREWZI. By accessing or using our platform, you agree to
+        Welcome to CareLink. By accessing or using our platform, you agree to
         comply with these Terms and Conditions. Please read them carefully.
       </p>
 
       <h2 className="text-xl font-semibold mt-8 mb-3">
-        1. About CREWZI
+        1. About CareLink
       </h2>
 
       <p>
-        CREWZI is a hospitality hiring platform that connects hospitality talent with
-        hotels, restaurants, cafes, catering companies, and other hospitality
-        businesses for full-time, part-time, and gig-based job opportunities.
+        CareLink is a companionship & assistance platform that connects helpers with
+        individuals and families seeking assistance for various opportunities.
       </p>
 
       <h2 className="text-xl font-semibold mt-8 mb-3">
@@ -35,7 +34,7 @@ export default function TermsPage() {
       </p>
 
       <h2 className="text-xl font-semibold mt-8 mb-3">
-        3. Talent Responsibilities
+        3. Helper Responsibilities
       </h2>
 
       <ul className="list-disc pl-6 space-y-2">
@@ -46,7 +45,7 @@ export default function TermsPage() {
       </ul>
 
       <h2 className="text-xl font-semibold mt-8 mb-3">
-        4. Employer Responsibilities
+        4. Requester Responsibilities
       </h2>
 
       <ul className="list-disc pl-6 space-y-2">
@@ -73,9 +72,8 @@ export default function TermsPage() {
       </h2>
 
       <p>
-        CREWZI only facilitates connections between talent and employers.
-        We do not guarantee employment, interviews, hiring decisions,
-        salaries, or job outcomes.
+        CareLink only facilitates connections between helpers and requesters.
+        We do not guarantee connections, arrangements, or outcomes.
       </p>
 
       <h2 className="text-xl font-semibold mt-8 mb-3">
@@ -83,7 +81,7 @@ export default function TermsPage() {
       </h2>
 
       <p>
-        We strive to keep CREWZI available and functional, but we do not
+        We strive to keep CareLink available and functional, but we do not
         guarantee uninterrupted access to the platform at all times.
       </p>
 
@@ -92,9 +90,8 @@ export default function TermsPage() {
       </h2>
 
       <p>
-        CREWZI shall not be responsible for employment decisions, workplace
-        disputes, salary disagreements, or damages resulting from interactions
-        between talent and employers.
+        CareLink shall not be responsible for disputes, disagreements, or damages resulting from interactions
+        between helpers and requesters.
       </p>
 
       <h2 className="text-xl font-semibold mt-8 mb-3">

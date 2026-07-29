@@ -2,9 +2,9 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'CREWZI',
-    short_name: 'CREWZI',
-    description: 'Hospitality Hiring Platform',
+    name: 'CareLink',
+    short_name: 'CareLink',
+    description: 'Companionship & Assistance Platform',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',

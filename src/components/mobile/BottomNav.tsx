@@ -127,9 +127,9 @@ const WORKER_NAV: NavItem[] = [
 
 const EMPLOYER_NAV: NavItem[] = [
   { label: 'Home', href: '/app/dashboard', icon: HomeIcon },
-  { label: 'Talent', href: '/app/candidates', icon: WorkersIcon },
+  { label: 'Helpers', href: '/app/candidates', icon: WorkersIcon },
   { label: 'Requests', href: '/app/requests', icon: RequestsIcon },
-  { label: 'Company', href: '/app/create-company', icon: CompanyIcon },
+  { label: 'Profile', href: '/app/create-company', icon: CompanyIcon },
 ];
 
 /* ──────────────────────────────────────────────

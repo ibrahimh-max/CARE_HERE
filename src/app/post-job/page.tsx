@@ -131,19 +131,19 @@ export default function PostJob() {
       <Navigation />
       <div className="py-8">
         <div className="max-w-2xl mx-auto px-4">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">Post a Job</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-8">Post an Opportunity</h1>
           
           {companies.length === 0 ? (
             <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-6">
-              <h3 className="text-lg font-semibold text-yellow-800 mb-2">No Company Found</h3>
+              <h3 className="text-lg font-semibold text-yellow-800 mb-2">No Profile Found</h3>
               <p className="text-yellow-700 mb-4">
-                You need to create a company before posting jobs.
+                You need to create a profile before posting opportunities.
               </p>
               <button
                 onClick={() => router.push('/create-company')}
                 className="bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary-dark transition-colors shadow-sm"
               >
-                Create Company
+                Create Profile
               </button>
             </div>
           ) : (
@@ -158,7 +158,7 @@ export default function PostJob() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
-                      Company
+                      Profile
                     </label>
                     <select
                       id="company"
@@ -283,7 +283,7 @@ export default function PostJob() {
                     
                     <div>
                       <label htmlFor="workers_needed" className="block text-sm font-medium text-gray-700 mb-1">
-                        Talent Needed
+                        Helpers Needed
                       </label>
                       <input
                         type="number"
@@ -304,7 +304,7 @@ export default function PostJob() {
                       disabled={submitting}
                       className="flex-1 bg-primary text-white py-2.5 px-4 rounded-xl hover:bg-primary-dark transition-colors disabled:bg-primary/50 font-medium shadow-sm"
                     >
-                      {submitting ? 'Posting Job...' : 'Post Job'}
+                      {submitting ? 'Posting Opportunity...' : 'Post Opportunity'}
                     </button>
                     <button
                       type="button"

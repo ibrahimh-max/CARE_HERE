@@ -172,12 +172,12 @@ export default function CreateCompanyPage() {
             🏢
           </div>
           <h1 className="text-3xl font-black text-foreground tracking-tight">
-            {hasCompany ? 'Edit Company' : 'Create Company'}
+            {hasCompany ? 'Edit Profile' : 'Create Profile'}
           </h1>
           <p className="text-foreground/60 mt-2 font-medium">
             {hasCompany 
-              ? 'Update your company profile' 
-              : 'Create your company profile and start inviting hospitality talent for interview'}
+              ? 'Update your profile' 
+              : 'Create your profile and start inviting helpers to connect'}
           </p>
         </div>
 
@@ -195,7 +195,7 @@ export default function CreateCompanyPage() {
             {/* Company Name */}
             <div>
               <label className="block mb-1.5 text-sm font-bold text-foreground">
-                Company Name *
+                Profile Name *
               </label>
               <input
                 type="text"
@@ -204,7 +204,7 @@ export default function CreateCompanyPage() {
                 onChange={handleChange}
                 required
                 className="input-field"
-                placeholder="Taj Hotel"
+                placeholder="Your Name"
               />
             </div>
 
@@ -259,17 +259,17 @@ export default function CreateCompanyPage() {
                 onChange={handleChange}
                 rows={4}
                 className="input-field resize-none"
-                placeholder="Tell workers about your hotel, restaurant, cafe, or business..."
+                placeholder="Tell helpers about yourself..."
               />
             </div>
 
             {/* Info Box */}
             <div className="bg-primary/5 rounded-xl p-4">
               <p className="font-bold text-primary">
-                Hiring Starts Here
+                Connecting Starts Here
               </p>
               <p className="text-sm text-foreground/60 mt-1 font-medium">
-                Once your company is created, you'll be able to browse talent and send interview invitations.
+                Once your profile is created, you'll be able to browse helpers and send help requests.
               </p>
             </div>
 
@@ -287,7 +287,7 @@ export default function CreateCompanyPage() {
                   </>
                 ) : (
                   <>
-                    {hasCompany ? 'Update Company' : 'Create Company'}
+                    {hasCompany ? 'Update Profile' : 'Create Profile'}
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   </>
                 )}

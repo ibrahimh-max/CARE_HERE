@@ -195,7 +195,7 @@ export default function Dashboard() {
             {profile?.role === 'worker' && (
               <div className="flex items-center gap-2 mt-3">
                 <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold tracking-wide">
-                  {profile.preferred_role || 'Hospitality Talent'}
+                  {profile.preferred_role || 'Helper'}
                 </span>
                 <span className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide ${profile.is_available ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                   <span className={`w-1.5 h-1.5 rounded-full ${profile.is_available ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></span>
@@ -206,7 +206,7 @@ export default function Dashboard() {
             {profile?.role === 'employer' && (
               <div className="flex items-center gap-2 mt-3">
                 <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold tracking-wide">
-                  Hospitality Employer
+                  Requester
                 </span>
               </div>
             )}
@@ -293,7 +293,7 @@ export default function Dashboard() {
                           {isComplete ? 'Profile Complete!' : 'Complete your profile'}
                         </h3>
                         <p className="text-sm text-foreground/60 mb-3">
-                          {isComplete ? 'Employers can now discover you.' : 'Add your details to get hired faster.'}
+                          {isComplete ? 'Requesters can now discover you.' : 'Add your details to get connected faster.'}
                         </p>
                         {!isComplete && (
                           <Link href="/app/profile" className="text-primary font-bold text-sm flex items-center gap-1 hover:text-primary-dark">
@@ -309,7 +309,7 @@ export default function Dashboard() {
 
               {/* Interview Inbox Section */}
               <div>
-                <h3 className="text-sm font-bold text-foreground/50 uppercase tracking-wider ml-1 mb-3">Interview Inbox</h3>
+                <h3 className="text-sm font-bold text-foreground/50 uppercase tracking-wider ml-1 mb-3">Help Requests</h3>
 
                 {interviewsLoading ? (
                   <div className="space-y-3">
@@ -319,9 +319,9 @@ export default function Dashboard() {
                 ) : interviewInvitations.length === 0 ? (
                   <div className="card-surface p-8 text-center border-dashed border-2 border-gray-200 shadow-none">
                     <div className="text-4xl mb-4 opacity-50">📫</div>
-                    <h3 className="text-lg font-bold text-foreground mb-2">No interviews yet</h3>
+                    <h3 className="text-lg font-bold text-foreground mb-2">No help requests yet</h3>
                     <p className="text-foreground/60 text-sm">
-                      When employers want to interview you, their requests will appear here.
+                      When requesters want to connect with you, their requests will appear here.
                     </p>
                   </div>
                 ) : (
@@ -396,7 +396,7 @@ export default function Dashboard() {
                       👥
                     </div>
                     <p className="text-3xl font-black text-foreground mb-1">{totalCandidates}</p>
-                    <p className="text-sm font-medium text-foreground/60">Available Talent</p>
+                    <p className="text-sm font-medium text-foreground/60">Available Helpers</p>
                   </div>
                   
                   <div className="card-surface p-5 relative overflow-hidden">
@@ -419,8 +419,8 @@ export default function Dashboard() {
                       🔍
                     </div>
                     <div>
-                      <h4 className="font-bold text-foreground">Browse Talent</h4>
-                      <p className="text-sm text-foreground/60">Find staff for your business</p>
+                      <h4 className="font-bold text-foreground">Browse Helpers</h4>
+                      <p className="text-sm text-foreground/60">Find helpers for your needs</p>
                     </div>
                   </div>
                   <div className="text-gray-300 group-hover:text-primary transition-colors">
@@ -435,7 +435,7 @@ export default function Dashboard() {
                     </div>
                     <div>
                       <h4 className="font-bold text-foreground">View Requests</h4>
-                      <p className="text-sm text-foreground/60">Manage interview invitations</p>
+                      <p className="text-sm text-foreground/60">Manage help requests</p>
                     </div>
                   </div>
                   <div className="text-gray-300 group-hover:text-primary transition-colors">

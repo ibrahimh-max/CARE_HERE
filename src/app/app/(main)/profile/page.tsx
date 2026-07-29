@@ -203,7 +203,7 @@ export default function ProfilePage() {
               {formData.name || 'Your Profile'}
             </h1>
             <p className="text-primary mt-1 font-bold">
-              {formData.preferred_role || 'Hospitality Talent'}
+              {formData.preferred_role || 'Helper'}
             </p>
           </div>
 
@@ -227,8 +227,8 @@ export default function ProfilePage() {
             {/* Availability toggle */}
             <div className="card-surface p-5 flex items-center justify-between">
               <div>
-                <h3 className="font-bold text-foreground">Available For Hiring</h3>
-                <p className="text-sm text-foreground/60 mt-0.5">Employers can discover and invite you</p>
+                <h3 className="font-bold text-foreground">Available For Connecting</h3>
+                <p className="text-sm text-foreground/60 mt-0.5">Requesters can discover and invite you</p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
@@ -332,7 +332,7 @@ export default function ProfilePage() {
 
             {/* Hospitality Information Block */}
             <div className="card-surface p-5">
-              <h3 className="font-bold text-lg text-foreground mb-4">Hospitality Info</h3>
+              <h3 className="font-bold text-lg text-foreground mb-4">Experience Info</h3>
               <div className="space-y-4">
                 <div>
                   <label htmlFor="preferred_role" className="block text-sm font-bold text-foreground mb-1.5">
@@ -359,7 +359,7 @@ export default function ProfilePage() {
 
                 <div>
                   <label htmlFor="hospitality_experience" className="block text-sm font-bold text-foreground mb-1.5">
-                    Hospitality Experience *
+                    Experience *
                   </label>
                   <select
                     id="hospitality_experience"
@@ -459,7 +459,7 @@ export default function ProfilePage() {
 
             {/* Version */}
             <div className="text-center pb-8">
-              <p className="text-sm font-bold text-foreground/30">CREWZI v1.0</p>
+              <p className="text-sm font-bold text-foreground/30">CareLink v1.0</p>
             </div>
           </div>
 

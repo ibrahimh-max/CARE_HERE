@@ -103,8 +103,8 @@ export default function Signup() {
 
           {/* Brand Header */}
           <div className="text-center mb-10">
-            <h1 className="text-4xl font-black text-primary tracking-tight mb-2">CREWZI</h1>
-            <p className="text-foreground/70 font-medium tracking-wide text-sm uppercase">Hospitality Hiring, Simplified</p>
+            <h1 className="text-4xl font-black text-primary tracking-tight mb-2">CareLink</h1>
+            <p className="text-foreground/70 font-medium tracking-wide text-sm uppercase">Companionship & Assistance, Simplified</p>
           </div>
 
           {/* Success State */}
@@ -128,7 +128,7 @@ export default function Signup() {
                   Create an account
                 </h2>
                 <p className="text-foreground/60 mt-1.5">
-                  Start your hospitality journey
+                  Start your journey
                 </p>
               </div>
 
@@ -216,8 +216,8 @@ export default function Signup() {
                       }`}
                     >
                       <span className="text-2xl mb-2">💼</span>
-                      <span className="font-semibold text-sm">Talent</span>
-                      <span className="text-xs opacity-70 mt-0.5">Looking for jobs</span>
+                      <span className="font-semibold text-sm">Helper</span>
+                      <span className="text-xs opacity-70 mt-0.5">Looking to help</span>
                     </button>
 
                     <button
@@ -230,8 +230,8 @@ export default function Signup() {
                       }`}
                     >
                       <span className="text-2xl mb-2">🏢</span>
-                      <span className="font-semibold text-sm">Employer</span>
-                      <span className="text-xs opacity-70 mt-0.5">Hiring staff</span>
+                      <span className="font-semibold text-sm">Requester</span>
+                      <span className="text-xs opacity-70 mt-0.5">Looking for help</span>
                     </button>
                   </div>
                 </div>

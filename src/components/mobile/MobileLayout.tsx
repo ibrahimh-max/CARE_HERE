@@ -30,8 +30,8 @@ export default function MobileLayout({
               }`}
             >
               {profile.role === 'employer'
-                ? 'Employer'
-                : 'Talent'}
+                ? 'Requester'
+                : 'Helper'}
             </span>
           )}
         </div>

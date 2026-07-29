@@ -9,7 +9,7 @@ export default function DeleteAccountPage() {
         </p>
 
         <p className="mb-6">
-          Crewzi allows users to permanently delete their account directly
+          CareLink allows users to permanently delete their account directly
           from within the application.
         </p>
 
@@ -18,7 +18,7 @@ export default function DeleteAccountPage() {
         </h2>
 
         <ol className="list-decimal pl-6 space-y-2 mb-6">
-          <li>Log in to your Crewzi account.</li>
+          <li>Log in to your CareLink account.</li>
           <li>Navigate to the Profile section.</li>
           <li>Select the Delete Account option.</li>
           <li>Confirm the account deletion request.</li>
@@ -31,7 +31,7 @@ export default function DeleteAccountPage() {
         <ul className="list-disc pl-6 space-y-2 mb-6">
           <li>Your account will be permanently deleted.</li>
           <li>Your profile information will be removed.</li>
-          <li>Your access to Crewzi will be revoked.</li>
+          <li>Your access to CareLink will be revoked.</li>
           <li>
             Certain records may be retained only if required for legal,
             security, or compliance purposes.

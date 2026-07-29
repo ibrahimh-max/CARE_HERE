@@ -263,9 +263,9 @@ export default function RequestsPage() {
                   <div className="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
                     <span className="text-5xl opacity-50">📭</span>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">No Requests Sent</h3>
+                  <h3 className="text-xl font-bold text-foreground mb-2">No Help Requests Sent</h3>
                   <p className="text-foreground/60 max-w-[200px] mx-auto">
-                    When you invite talent to interview, the requests will appear here.
+                    When you invite helpers to connect, the requests will appear here.
                   </p>
                 </div>
               ) : (
@@ -345,9 +345,9 @@ export default function RequestsPage() {
                   <div className="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
                     <span className="text-5xl opacity-50">📬</span>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">No Interview Requests Yet</h3>
+                  <h3 className="text-xl font-bold text-foreground mb-2">No Help Requests Yet</h3>
                   <p className="text-foreground/60 max-w-[200px] mx-auto">
-                    Employers will be able to invite you here.
+                    Requesters will be able to invite you here.
                   </p>
                 </div>
               ) : (

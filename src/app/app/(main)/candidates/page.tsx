@@ -122,7 +122,7 @@ export default function CandidatesPage() {
         .maybeSingle();
 
       if (existing) {
-        setError('You have already requested this candidate.');
+        setError('You have already requested this helper.');
         return;
       }
 
@@ -143,14 +143,14 @@ export default function CandidatesPage() {
         return;
       }
 
-      setSuccessMessage('Interview request sent successfully.');
+      setSuccessMessage('Help request sent successfully.');
 
       setTimeout(() => {
         setSuccessMessage('');
       }, 3000);
 
     } catch {
-      setError('Failed to send interview request.');
+      setError('Failed to send help request.');
     } finally {
       setSendingRequest(null);
     }
@@ -223,10 +223,10 @@ export default function CandidatesPage() {
             <div className="flex items-end justify-between">
               <div>
                 <h1 className="text-3xl font-black text-foreground tracking-tight">
-                  Find Talent
+                  Find Helpers
                 </h1>
                 <p className="text-foreground/60 mt-1 font-medium">
-                  {filteredCandidates.length} profiles available
+                  {filteredCandidates.length} helpers available
                 </p>
               </div>
               <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl">
@@ -347,7 +347,7 @@ export default function CandidatesPage() {
               <div className="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-5xl opacity-50">🔍</span>
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">No Talent Found</h3>
+              <h3 className="text-xl font-bold text-foreground mb-2">No Helpers Found</h3>
               <p className="text-foreground/60 mb-6 max-w-[200px] mx-auto">
                 Try adjusting your filters to see more results.
               </p>
@@ -434,7 +434,7 @@ export default function CandidatesPage() {
                         </>
                       ) : (
                         <>
-                          Invite to Interview
+                          Send Help Request
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                         </>
                       )}

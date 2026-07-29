@@ -8,8 +8,8 @@ export default function PrivacyPolicyPage() {
       </p>
 
       <p className="mb-4">
-        Crewzi is a hospitality hiring platform that connects hospitality talent with
-        hospitality businesses such as hotels, restaurants, cafes, and venues.
+        CareLink is a companionship & assistance platform that connects helpers with
+        individuals and families seeking assistance.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">
@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
 
       <ul className="list-disc pl-6 space-y-2">
         <li>To create and manage accounts</li>
-        <li>To connect talent and employers</li>
+        <li>To connect helpers and requesters</li>
         <li>To process job applications</li>
         <li>To improve our platform and services</li>
       </ul>
@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
       </h2>
 
       <p>
-        Crewzi uses Supabase for authentication, database management, and
+        CareLink uses Supabase for authentication, database management, and
         platform functionality.
       </p>
 
