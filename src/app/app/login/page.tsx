@@ -93,8 +93,8 @@ export default function Login() {
           
           {/* Brand Header */}
           <div className="text-center mb-10">
-            <h1 className="text-4xl font-black text-primary tracking-tight mb-2">CREWZI</h1>
-            <p className="text-foreground/70 font-medium tracking-wide text-sm uppercase">Hospitality Hiring, Simplified</p>
+            <h1 className="text-4xl font-black text-primary tracking-tight mb-2">CareLink</h1>
+            <p className="text-foreground/70 font-medium tracking-wide text-sm uppercase">Companionship & Assistance, Simplified</p>
           </div>
 
           <div className="card-surface p-8">

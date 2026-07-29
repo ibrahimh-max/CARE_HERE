@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function HomePage() {
   // Temporary high-end success message handler to eliminate the UX vacuum
   const handleWaitlistClick = () => {
-    alert("🎉 You're on the list!\n\nThank you for joining the CREWZI early access waitlist. We will notify you the exact moment the Android build goes live on the Google Play Store.");
+    alert("🎉 You're on the list!\n\nThank you for joining the CareLink early access waitlist. We will notify you the exact moment the Android build goes live on the Google Play Store.");
   };
 
   return (
@@ -14,7 +14,7 @@ export default function HomePage() {
       {/* NAVBAR */}
       <nav className="max-w-6xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 border-b border-primary/5 sm:border-none">
         <div className="text-2xl font-black text-primary tracking-tight">
-          CREWZI
+          CareLink
         </div>
 
         <div className="flex items-center justify-center gap-6 w-full sm:w-auto">
@@ -43,19 +43,19 @@ export default function HomePage() {
         <div className="relative max-w-6xl mx-auto px-4 py-16 sm:py-24 md:py-32 text-center">
           
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider mb-6 animate-fade-in-up">
-            🚀 Hospitality Hiring Platform
+            🚀 Companionship & Assistance Platform
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-foreground tracking-tight leading-none mb-6">
-            Hire Hospitality
+            Find Local
             <br />
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Staff Faster
+              Helpers & Companions
             </span>
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-            CREWZI connects hotels, restaurants, cafes and event businesses with premium hospitality talent across India.
+            CareLink connects people who need companionship or everyday assistance with trusted local helpers in your community.
           </p>
 
           {/* Hero Buttons */}
@@ -78,19 +78,19 @@ export default function HomePage() {
           {/* STATS/SECTORS GRID */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 max-w-4xl mx-auto">
             <div className="card-surface p-4 flex items-center justify-center bg-white border border-primary/10 rounded-2xl">
-              <p className="font-bold text-sm sm:text-base">🏨 Hotels</p>
+              <p className="font-bold text-sm sm:text-base">👤 Companionship</p>
             </div>
 
             <div className="card-surface p-4 flex items-center justify-center bg-white border border-primary/10 rounded-2xl">
-              <p className="font-bold text-sm sm:text-base">🍽 Restaurants</p>
+              <p className="font-bold text-sm sm:text-base">� Daily Assistance</p>
             </div>
 
             <div className="card-surface p-4 flex items-center justify-center bg-white border border-primary/10 rounded-2xl">
-              <p className="font-bold text-sm sm:text-base">☕ Cafes</p>
+              <p className="font-bold text-sm sm:text-base">🚗 Errands</p>
             </div>
 
             <div className="card-surface p-4 flex items-center justify-center bg-white border border-primary/10 rounded-2xl">
-              <p className="font-bold text-sm sm:text-base">🎉 Events</p>
+              <p className="font-bold text-sm sm:text-base">💬 Social Support</p>
             </div>
           </div>
 
@@ -103,35 +103,35 @@ export default function HomePage() {
 
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-black text-foreground tracking-tight mb-3">
-              Why CREWZI?
+              Why CareLink?
             </h2>
             <p className="text-foreground/60 text-sm sm:text-base font-medium">
-              Hospitality hiring is still broken. We are fixing it.
+              Finding trusted local help shouldn't be difficult. We make it simple.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <div className="bg-red-50/60 border border-red-100 rounded-2xl p-6 sm:p-8">
               <h3 className="text-xl font-bold text-red-900 mb-4">
-                Traditional Hiring
+                Finding Help The Old Way
               </h3>
               <ul className="space-y-3.5 font-semibold text-sm text-red-800/80">
                 <li>❌ Messy WhatsApp Groups</li>
                 <li>❌ Unreliable Random Referrals</li>
-                <li>❌ Painfully Slow Onboarding Processes</li>
-                <li>❌ No Structured Candidate Profile Database</li>
+                <li>❌ No Background Verification</li>
+                <li>❌ No Structured Helper Profiles</li>
               </ul>
             </div>
 
             <div className="bg-primary/5 border border-primary/10 rounded-2xl p-6 sm:p-8">
               <h3 className="text-xl font-bold text-primary mb-4">
-                Hiring with CREWZI
+                Finding Help with CareLink
               </h3>
               <ul className="space-y-3.5 font-semibold text-sm text-foreground/80">
-                <li>✅ 100% Dedicated Hospitality Focus</li>
-                <li>✅ Thorough, Visual Talent Profiles</li>
-                <li>✅ One-Tap Instant Interview Requests</li>
-                <li>✅ Fast, Frictionless Verification States</li>
+                <li>✅ Verified Local Helpers</li>
+                <li>✅ Detailed Helper Profiles</li>
+                <li>✅ One-Tap Connection Requests</li>
+                <li>✅ Safe, Trusted Community</li>
               </ul>
             </div>
           </div>
@@ -143,10 +143,10 @@ export default function HomePage() {
       <section className="py-16 border-t border-primary/10 bg-primary/5">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-3xl sm:text-4xl font-black text-foreground tracking-tight mb-4">
-            Get CREWZI on Android
+            Get CareLink on Android
           </h2>
           <p className="text-sm sm:text-base text-foreground/60 mb-8 max-w-xl mx-auto font-medium leading-relaxed">
-            Built exclusively for modern hospitality hiring ecosystems. Connect top-tier staffing networks and properties instantly.
+            Built exclusively for connecting people with trusted local helpers. Find companionship and assistance in your community.
           </p>
           <button 
             onClick={handleWaitlistClick}
@@ -161,19 +161,19 @@ export default function HomePage() {
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h2 className="text-3xl sm:text-4xl font-black text-foreground tracking-tight mb-3">
-            Built for Hospitality Sectors
+            Built for Your Needs
           </h2>
           <p className="text-foreground/60 text-sm sm:text-base font-medium max-w-xl mx-auto mb-10">
-            CREWZI focuses exclusively on niche professional staffing and rapid recruitment pipelines.
+            CareLink focuses exclusively on connecting you with verified local helpers for companionship and everyday assistance.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-5 gap-3 max-w-4xl mx-auto">
             {[
-              '🏨 Hotels',
-              '🍽 Restaurants',
-              '☕ Cafes',
-              '🎉 Events',
-              '🍴 Cloud Kitchens',
+              '👤 Companionship',
+              '� Daily Help',
+              '🚗 Errands',
+              '💬 Social Support',
+              '� Care Support',
             ].map((item) => (
               <div
                 key={item}
@@ -194,35 +194,35 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-black text-foreground tracking-tight mb-3">
-              How CREWZI Works
+              How CareLink Works
             </h2>
             <p className="text-foreground/60 text-sm sm:text-base font-medium max-w-xl mx-auto">
-              Clean hiring flows created structurally for managers and dynamic job seekers.
+              Simple connections between people who need help and trusted local helpers.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl border border-primary/10 shadow-sm p-6 sm:p-8">
               <h3 className="text-xl font-bold text-foreground mb-4">
-                🏢 For Employers
+                👤 For Those Who Need Help
               </h3>
               <ul className="space-y-3 font-semibold text-sm text-foreground/70">
-                <li>✓ Set up your professional workspace cards</li>
-                <li>✓ Filter through matching live candidate records</li>
-                <li>✓ Deploy automated interview invites straight to their inbox</li>
-                <li>✓ Lock in verified talent fast</li>
+                <li>✓ Browse verified local helpers</li>
+                <li>✓ View detailed helper profiles</li>
+                <li>✓ Send connection requests</li>
+                <li>✓ Find trusted help quickly</li>
               </ul>
             </div>
 
             <div className="bg-white rounded-2xl border border-primary/10 shadow-sm p-6 sm:p-8">
               <h3 className="text-xl font-bold text-foreground mb-4">
-                💼 For Talent
+                🤝 For Helpers
               </h3>
               <ul className="space-y-3 font-semibold text-sm text-foreground/70">
-                <li>✓ Fill in your basic skill set metrics</li>
-                <li>✓ Get surface visibility across top-tier venues</li>
-                <li>✓ Get push updates for incoming interviews</li>
-                <li>✓ Accelerate your professional career tracking</li>
+                <li>✓ Create your helper profile</li>
+                <li>✓ Connect with people nearby</li>
+                <li>✓ Receive connection requests</li>
+                <li>✓ Build your reputation</li>
               </ul>
             </div>
           </div>
@@ -234,20 +234,20 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-black text-foreground tracking-tight mb-3">
-              Popular Hospitality Roles
+              Popular Help Categories
             </h2>
             <p className="text-foreground/60 text-sm sm:text-base font-medium">
-              Instant match channels across popular categories.
+              Find help across popular categories.
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-5 gap-3 max-w-4xl mx-auto">
             {[
-              '🍽 Waiter',
-              '👨‍🍳 Chef',
-              '☕ Barista',
-              '🚗 Valet',
-              '🎉 Event Staff',
+              '👤 Companionship',
+              '� Household Help',
+              '🚗 Errands',
+              '� Social Support',
+              '� Care Assistance',
             ].map((role) => (
               <div
                 key={role}
@@ -264,10 +264,10 @@ export default function HomePage() {
       <section className="py-20 border-t border-primary/10 bg-primary/5">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight mb-5 leading-none">
-            Start hiring faster with CREWZI
+            Find trusted help with CareLink
           </h2>
           <p className="text-sm sm:text-base text-foreground/60 mb-8 max-w-xl mx-auto font-medium">
-            Join the growing hospitality network built to match localized talent profiles instantly.
+            Join the growing community built to connect people with trusted local helpers.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-xs mx-auto sm:max-w-none">
@@ -291,9 +291,9 @@ export default function HomePage() {
       <footer className="border-t border-primary/10 py-8 bg-white/20">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-5">
           <div>
-            <p className="font-black text-primary tracking-tight text-lg">CREWZI</p>
+            <p className="font-black text-primary tracking-tight text-lg">CareLink</p>
             <p className="text-xs font-semibold text-foreground/50 mt-0.5">
-              Hospitality Hiring Platform
+              Companionship & Assistance Platform
             </p>
           </div>
 

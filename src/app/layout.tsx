@@ -3,8 +3,8 @@ import './globals.css';
 import { AuthProvider } from '@/contexts/AuthContext';
 
 export const metadata: Metadata = {
-  title: 'CREWZI - Hospitality Hiring Platform',
-  description: 'Connect with hospitality jobs and talent',
+  title: 'CareLink - Companionship & Assistance Platform',
+  description: 'Connect with local helpers for companionship and everyday assistance',
 };
 
 export default function RootLayout({

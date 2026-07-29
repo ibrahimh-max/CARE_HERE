@@ -18,7 +18,7 @@ export default function MobileLayout({
 
         <div className="flex items-center gap-3">
           <span className="mobile-header__brand">
-            CREWZI
+            CareLink
           </span>
 
           {profile?.role && (

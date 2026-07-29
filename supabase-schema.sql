@@ -1,4 +1,4 @@
--- Supabase Database Schema for SHIRE Hospitality Hiring Platform
+-- Supabase Database Schema for CareLink Companionship & Assistance Platform
 -- Run this SQL in your Supabase SQL editor to create the required tables
 
 -- Create profiles table to store user role and additional information

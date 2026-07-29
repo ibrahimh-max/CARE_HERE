@@ -17,7 +17,7 @@ export default function Navigation() {
           {/* Left — logo */}
           <div className="flex items-center">
             <span className="text-xl font-bold tracking-tight text-primary">
-              CREWZI
+              CareLink
             </span>
           </div>
 
@@ -72,4 +72,4 @@ export default function Navigation() {
       </div>
     </nav>
   );
-}
+}

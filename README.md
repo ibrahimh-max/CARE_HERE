@@ -1,31 +1,32 @@
-# CREWZI
+# CareLink
 
-CREWZI is a hospitality hiring platform built for the F&B and hospitality industry.  
-It connects workers looking for jobs with hotels, restaurants, cafes, and venues looking to hire staff.
+CareLink is a companionship and assistance platform that connects people who need help with trusted local helpers.
+It connects individuals seeking companionship or everyday assistance with verified helpers in their community.
 
 The platform supports:
-- Full-time hiring
-- Part-time hiring
-- Gig/shift-based staffing
+- Companionship services
+- Daily assistance and errands
+- Social support
+- Care assistance
 
 ---
 
 # 🚀 Features
 
-## 👷 Worker Features
+## � User Features
 - User authentication
-- Worker profile creation
-- Browse hospitality jobs
-- Apply to jobs
-- Track application status
-- View applied jobs in dashboard
+- User profile creation
+- Browse local helpers
+- Send connection requests
+- Track request status
+- View connections in dashboard
 
-## 🏢 Employer Features
-- Employer authentication
-- Company/job management
-- Post hospitality jobs
-- View applicants
-- Track hiring activity through dashboard
+## 🤝 Helper Features
+- Helper authentication
+- Profile management
+- Receive connection requests
+- Manage availability
+- Track connections through dashboard
 
 ## 🔐 Authentication
 - Supabase Authentication
