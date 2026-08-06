@@ -195,13 +195,31 @@ export default function CandidatesPage() {
   if (loading || !authInitialized) {
     return (
       <div className="min-h-screen bg-background">
-        <div className="py-8 px-4 max-w-md mx-auto space-y-6">
-          <div className="skeleton h-20 w-full"></div>
-          <div className="skeleton h-12 w-full"></div>
-          <div className="space-y-4">
-            <div className="skeleton h-48 w-full"></div>
-            <div className="skeleton h-48 w-full"></div>
-            <div className="skeleton h-48 w-full"></div>
+        <div className="page-container space-y-6">
+          <div className="page-header flex justify-between items-end">
+            <div className="space-y-2">
+              <div className="skeleton h-9 w-40 rounded-xl"></div>
+              <div className="skeleton h-4 w-32 rounded"></div>
+            </div>
+            <div className="skeleton w-12 h-12 rounded-full"></div>
+          </div>
+          <div className="card-surface p-4 h-14 skeleton rounded-xl"></div>
+          <div className="space-y-5">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="card-surface p-5 space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="skeleton w-16 h-16 rounded-full flex-shrink-0"></div>
+                  <div className="flex-1 space-y-2">
+                    <div className="skeleton h-6 w-36 rounded"></div>
+                    <div className="flex gap-2">
+                      <div className="skeleton h-6 w-20 rounded-lg"></div>
+                      <div className="skeleton h-6 w-20 rounded-lg"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="skeleton h-11 w-full rounded-xl"></div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -335,12 +353,24 @@ export default function CandidatesPage() {
 
           {/* Talent List */}
           {pageLoading ? (
-            <div className="space-y-4">
-              <div className="skeleton h-48 w-full"></div>
-              <div className="skeleton h-48 w-full"></div>
-              <div className="skeleton h-48 w-full"></div>
+            <div className="space-y-5">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="card-surface p-5 space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="skeleton w-16 h-16 rounded-full flex-shrink-0"></div>
+                    <div className="flex-1 space-y-2">
+                      <div className="skeleton h-6 w-36 rounded"></div>
+                      <div className="flex gap-2">
+                        <div className="skeleton h-6 w-20 rounded-lg"></div>
+                        <div className="skeleton h-6 w-20 rounded-lg"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="skeleton h-11 w-full rounded-xl"></div>
+                </div>
+              ))}
             </div>
-          ) : filteredCandidates.length === 0 ? (
+          ) : (filteredCandidates.length === 0 ? (
             <div className="empty-state mt-8">
               <div className="empty-state-icon">🔍</div>
               <h3 className="empty-state-title">No Helpers Found</h3>

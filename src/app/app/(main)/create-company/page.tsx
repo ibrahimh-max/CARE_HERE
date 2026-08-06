@@ -82,17 +82,30 @@ export default function CreateCompanyPage() {
   if (loading || !authInitialized || !profile || checkingCompany) {
     return (
       <div className="min-h-screen bg-background">
-        <div className="max-w-md mx-auto px-4 py-8 space-y-6">
-          <div className="flex flex-col items-center mb-8 space-y-4">
+        <div className="page-container space-y-6">
+          <div className="page-header text-center space-y-3 flex flex-col items-center">
             <div className="skeleton w-24 h-24 rounded-full"></div>
-            <div className="skeleton h-8 w-48"></div>
-            <div className="skeleton h-4 w-64"></div>
+            <div className="skeleton h-8 w-44 rounded-xl"></div>
+            <div className="skeleton h-4 w-60 rounded"></div>
           </div>
-          <div className="space-y-4">
-            <div className="skeleton h-20 w-full"></div>
-            <div className="skeleton h-20 w-full"></div>
-            <div className="skeleton h-20 w-full"></div>
-            <div className="skeleton h-32 w-full"></div>
+          <div className="card-surface p-5 space-y-5">
+            <div className="space-y-2">
+              <div className="skeleton h-4 w-28 rounded"></div>
+              <div className="skeleton h-12 w-full rounded-xl"></div>
+            </div>
+            <div className="space-y-2">
+              <div className="skeleton h-4 w-28 rounded"></div>
+              <div className="skeleton h-12 w-full rounded-xl"></div>
+            </div>
+            <div className="space-y-2">
+              <div className="skeleton h-4 w-24 rounded"></div>
+              <div className="skeleton h-12 w-full rounded-xl"></div>
+            </div>
+            <div className="space-y-2">
+              <div className="skeleton h-4 w-36 rounded"></div>
+              <div className="skeleton h-24 w-full rounded-xl"></div>
+            </div>
+            <div className="skeleton h-12 w-full rounded-xl pt-2"></div>
           </div>
         </div>
       </div>

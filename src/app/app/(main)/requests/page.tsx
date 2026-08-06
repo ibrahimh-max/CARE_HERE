@@ -177,12 +177,32 @@ export default function RequestsPage() {
   if (loading || !authInitialized) {
     return (
       <div className="min-h-screen bg-background">
-        <div className="py-8 px-4 max-w-md mx-auto space-y-6">
-          <div className="skeleton h-20 w-full mb-6"></div>
+        <div className="page-container space-y-6">
+          <div className="page-header flex justify-between items-end">
+            <div className="space-y-2">
+              <div className="skeleton h-9 w-40 rounded-xl"></div>
+              <div className="skeleton h-4 w-28 rounded"></div>
+            </div>
+            <div className="skeleton w-12 h-12 rounded-full"></div>
+          </div>
+          <div className="flex gap-2">
+            <div className="card-surface px-4 py-3 flex-1 h-12 skeleton"></div>
+            <div className="card-surface px-4 py-3 flex-1 h-12 skeleton"></div>
+            <div className="card-surface px-4 py-3 flex-1 h-12 skeleton"></div>
+          </div>
           <div className="space-y-4">
-            <div className="skeleton h-32 w-full"></div>
-            <div className="skeleton h-32 w-full"></div>
-            <div className="skeleton h-32 w-full"></div>
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="card-surface p-5 space-y-3">
+                <div className="flex items-start gap-4">
+                  <div className="skeleton w-12 h-12 rounded-full flex-shrink-0"></div>
+                  <div className="flex-1 space-y-2">
+                    <div className="skeleton h-5 w-36 rounded"></div>
+                    <div className="skeleton h-4 w-24 rounded"></div>
+                    <div className="skeleton h-12 w-full rounded-lg"></div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -252,9 +272,18 @@ export default function RequestsPage() {
             <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
               {pageLoading ? (
                 <div className="space-y-4">
-                  <div className="skeleton h-32 w-full"></div>
-                  <div className="skeleton h-32 w-full"></div>
-                  <div className="skeleton h-32 w-full"></div>
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="card-surface p-5 space-y-3">
+                      <div className="flex items-start gap-4">
+                        <div className="skeleton w-12 h-12 rounded-full flex-shrink-0"></div>
+                        <div className="flex-1 space-y-2">
+                          <div className="skeleton h-5 w-36 rounded"></div>
+                          <div className="skeleton h-4 w-24 rounded"></div>
+                          <div className="skeleton h-10 w-full rounded-lg"></div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ) : requests.length === 0 ? (
                 <div className="empty-state mt-8">
@@ -333,8 +362,21 @@ export default function RequestsPage() {
 
               {pageLoading ? (
                 <div className="space-y-4">
-                  <div className="skeleton h-48 w-full"></div>
-                  <div className="skeleton h-48 w-full"></div>
+                  {[1, 2].map((i) => (
+                    <div key={i} className="card-surface p-5 space-y-3">
+                      <div className="flex items-start gap-4">
+                        <div className="skeleton w-12 h-12 rounded-full flex-shrink-0"></div>
+                        <div className="flex-1 space-y-2">
+                          <div className="skeleton h-5 w-36 rounded"></div>
+                          <div className="skeleton h-16 w-full rounded-2xl"></div>
+                        </div>
+                      </div>
+                      <div className="flex gap-2 pt-2">
+                        <div className="skeleton h-10 flex-1 rounded-xl"></div>
+                        <div className="skeleton h-10 flex-1 rounded-xl"></div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ) : workerInvitations.length === 0 ? (
                 <div className="empty-state mt-8">

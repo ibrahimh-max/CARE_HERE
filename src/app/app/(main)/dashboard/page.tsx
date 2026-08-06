@@ -162,13 +162,29 @@ export default function Dashboard() {
   if (loading || !authInitialized) {
     return (
       <div className="min-h-screen bg-background">
-        <div className="py-8 px-4 max-w-md mx-auto space-y-6">
-          <div className="skeleton h-24 w-full mb-6"></div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="skeleton h-32 w-full"></div>
-            <div className="skeleton h-32 w-full"></div>
+        <div className="page-container space-y-6">
+          <div className="page-header space-y-2">
+            <div className="skeleton h-4 w-28 rounded"></div>
+            <div className="skeleton h-9 w-48 rounded-xl"></div>
+            <div className="skeleton h-6 w-32 rounded-full"></div>
           </div>
-          <div className="skeleton h-40 w-full"></div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="card-surface p-5 space-y-3">
+              <div className="skeleton h-10 w-10 rounded-xl"></div>
+              <div className="skeleton h-8 w-12 rounded"></div>
+              <div className="skeleton h-4 w-24 rounded"></div>
+            </div>
+            <div className="card-surface p-5 space-y-3">
+              <div className="skeleton h-10 w-10 rounded-xl"></div>
+              <div className="skeleton h-8 w-12 rounded"></div>
+              <div className="skeleton h-4 w-24 rounded"></div>
+            </div>
+          </div>
+          <div className="card-surface p-6 space-y-4">
+            <div className="skeleton h-6 w-36 rounded"></div>
+            <div className="skeleton h-4 w-full rounded"></div>
+            <div className="skeleton h-4 w-2/3 rounded"></div>
+          </div>
         </div>
       </div>
     );
@@ -310,9 +326,22 @@ export default function Dashboard() {
                 <h3 className="text-sm font-bold text-foreground/50 uppercase tracking-wider ml-1 mb-3">Help Requests</h3>
 
                 {interviewsLoading ? (
-                  <div className="space-y-3">
-                    <div className="skeleton h-32 w-full"></div>
-                    <div className="skeleton h-32 w-full"></div>
+                  <div className="space-y-4">
+                    {[1, 2].map((i) => (
+                      <div key={i} className="card-surface p-5 space-y-3">
+                        <div className="flex items-center gap-4">
+                          <div className="skeleton w-12 h-12 rounded-full flex-shrink-0"></div>
+                          <div className="flex-1 space-y-2">
+                            <div className="skeleton h-5 w-32 rounded"></div>
+                            <div className="skeleton h-4 w-full rounded"></div>
+                          </div>
+                        </div>
+                        <div className="flex gap-2 pt-2">
+                          <div className="skeleton h-10 flex-1 rounded-xl"></div>
+                          <div className="skeleton h-10 flex-1 rounded-xl"></div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 ) : interviewInvitations.length === 0 ? (
                   <div className="empty-state">
@@ -383,8 +412,16 @@ export default function Dashboard() {
             <div className="space-y-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
               {candidatesLoading ? (
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="skeleton h-32 w-full"></div>
-                  <div className="skeleton h-32 w-full"></div>
+                  <div className="card-surface p-5 space-y-3">
+                    <div className="skeleton h-10 w-10 rounded-xl"></div>
+                    <div className="skeleton h-8 w-12 rounded"></div>
+                    <div className="skeleton h-4 w-24 rounded"></div>
+                  </div>
+                  <div className="card-surface p-5 space-y-3">
+                    <div className="skeleton h-10 w-10 rounded-xl"></div>
+                    <div className="skeleton h-8 w-12 rounded"></div>
+                    <div className="skeleton h-4 w-24 rounded"></div>
+                  </div>
                 </div>
               ) : (
                 <div className="grid grid-cols-2 gap-4">

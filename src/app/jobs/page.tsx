@@ -193,13 +193,42 @@ const fetchJobs = async () => {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navigation />
-        <div className="flex items-center justify-center py-24">
-          <div className="text-center">
-            <div className="w-8 h-8 border-2 border-gray-200 rounded-full mx-auto mb-4" style={{ borderTopColor: BRAND, animation: 'spin 0.8s linear infinite' }} />
-            <p className="text-sm text-gray-500">Loading jobs...</p>
+        <div className="max-w-6xl mx-auto px-4 py-10">
+          {/* Hero Skeleton */}
+          <div className="text-center mb-10 space-y-2 flex flex-col items-center">
+            <div className="skeleton h-9 w-64 rounded-xl"></div>
+            <div className="skeleton h-4 w-44 rounded-lg"></div>
+          </div>
+
+          {/* Search + Filter Bar Skeleton */}
+          <div className="bg-white rounded-2xl border border-gray-100 p-5 mb-8 shadow-sm">
+            <div className="grid gap-3 md:grid-cols-4">
+              <div className="md:col-span-2 skeleton h-10 w-full rounded-xl"></div>
+              <div className="skeleton h-10 w-full rounded-xl"></div>
+              <div className="skeleton h-10 w-full rounded-xl"></div>
+            </div>
+          </div>
+
+          {/* Cards Grid Skeleton */}
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="bg-white rounded-2xl border border-gray-100 p-6 space-y-4">
+                <div className="flex justify-between items-center">
+                  <div className="skeleton h-6 w-20 rounded-full"></div>
+                  <div className="skeleton h-4 w-12 rounded"></div>
+                </div>
+                <div className="skeleton h-6 w-3/4 rounded-lg"></div>
+                <div className="skeleton h-4 w-1/3 rounded"></div>
+                <div className="skeleton h-12 w-full rounded-lg"></div>
+                <div className="flex justify-between items-center pt-2">
+                  <div className="skeleton h-5 w-24 rounded"></div>
+                  <div className="skeleton h-5 w-16 rounded-lg"></div>
+                </div>
+                <div className="skeleton h-10 w-full rounded-xl mt-2"></div>
+              </div>
+            ))}
           </div>
         </div>
-        <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
       </div>
     );
   }

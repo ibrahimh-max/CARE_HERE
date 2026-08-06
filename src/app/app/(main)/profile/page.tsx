@@ -163,16 +163,21 @@ export default function ProfilePage() {
   if (loading || !authInitialized) {
     return (
       <div className="min-h-screen bg-background">
-        <div className="py-8 px-4 max-w-md mx-auto space-y-6">
-          <div className="flex flex-col items-center mb-8 space-y-4">
+        <div className="page-container space-y-6">
+          <div className="flex flex-col items-center mb-8 space-y-3">
             <div className="skeleton w-24 h-24 rounded-full"></div>
-            <div className="skeleton h-8 w-48"></div>
-            <div className="skeleton h-4 w-32"></div>
+            <div className="skeleton h-8 w-44 rounded-xl"></div>
+            <div className="skeleton h-4 w-28 rounded"></div>
           </div>
-          <div className="space-y-4">
-            <div className="skeleton h-20 w-full"></div>
-            <div className="skeleton h-40 w-full"></div>
-            <div className="skeleton h-40 w-full"></div>
+          <div className="card-surface p-5 h-20 skeleton rounded-[var(--radius-card)]"></div>
+          <div className="card-surface p-5 space-y-4">
+            <div className="skeleton h-6 w-32 rounded"></div>
+            <div className="skeleton h-12 w-full rounded-xl"></div>
+            <div className="skeleton h-12 w-full rounded-xl"></div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="skeleton h-12 w-full rounded-xl"></div>
+              <div className="skeleton h-12 w-full rounded-xl"></div>
+            </div>
           </div>
         </div>
       </div>

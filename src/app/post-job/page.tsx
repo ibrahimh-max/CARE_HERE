@@ -112,10 +112,36 @@ export default function PostJob() {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navigation />
-        <div className="flex items-center justify-center py-16">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading...</p>
+        <div className="py-8">
+          <div className="max-w-2xl mx-auto px-4 space-y-6">
+            <div className="skeleton h-9 w-64 rounded-xl mb-8"></div>
+            <div className="bg-white rounded-2xl border border-gray-100 p-6 md:p-8 space-y-6 shadow-sm">
+              <div className="space-y-2">
+                <div className="skeleton h-4 w-20 rounded"></div>
+                <div className="skeleton h-10 w-full rounded-xl"></div>
+              </div>
+              <div className="space-y-2">
+                <div className="skeleton h-4 w-24 rounded"></div>
+                <div className="skeleton h-10 w-full rounded-xl"></div>
+              </div>
+              <div className="space-y-2">
+                <div className="skeleton h-4 w-32 rounded"></div>
+                <div className="skeleton h-32 w-full rounded-xl"></div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="skeleton h-10 w-full rounded-xl"></div>
+                <div className="skeleton h-10 w-full rounded-xl"></div>
+              </div>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="skeleton h-10 w-full rounded-xl"></div>
+                <div className="skeleton h-10 w-full rounded-xl"></div>
+                <div className="skeleton h-10 w-full rounded-xl"></div>
+              </div>
+              <div className="flex gap-4 pt-4">
+                <div className="skeleton h-11 flex-1 rounded-xl"></div>
+                <div className="skeleton h-11 flex-1 rounded-xl"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

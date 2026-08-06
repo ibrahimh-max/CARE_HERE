@@ -90,7 +90,42 @@ export default function Signup() {
   };
 
   if (!mounted) {
-    return null;
+    return (
+      <div className="min-h-screen bg-background flex flex-col">
+        <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primary-dark"></div>
+        <div className="flex-1 flex flex-col justify-center">
+          <div className="page-container w-full space-y-6">
+            <div className="text-center mb-10 space-y-2 flex flex-col items-center">
+              <div className="skeleton h-10 w-36 rounded-xl"></div>
+              <div className="skeleton h-4 w-56 rounded"></div>
+            </div>
+            <div className="card-surface p-8 space-y-5">
+              <div className="text-center space-y-2 flex flex-col items-center mb-6">
+                <div className="skeleton h-7 w-44 rounded-lg"></div>
+                <div className="skeleton h-4 w-32 rounded"></div>
+              </div>
+              <div className="space-y-2">
+                <div className="skeleton h-4 w-20 rounded"></div>
+                <div className="skeleton h-12 w-full rounded-xl"></div>
+              </div>
+              <div className="space-y-2">
+                <div className="skeleton h-4 w-24 rounded"></div>
+                <div className="skeleton h-12 w-full rounded-xl"></div>
+              </div>
+              <div className="space-y-2">
+                <div className="skeleton h-4 w-32 rounded"></div>
+                <div className="skeleton h-12 w-full rounded-xl"></div>
+              </div>
+              <div className="grid grid-cols-2 gap-3 pt-1">
+                <div className="skeleton h-20 w-full rounded-xl"></div>
+                <div className="skeleton h-20 w-full rounded-xl"></div>
+              </div>
+              <div className="skeleton h-12 w-full rounded-xl pt-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
