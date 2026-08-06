@@ -164,17 +164,17 @@ export default function CreateCompanyPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-md mx-auto px-4 py-6">
+      <div className="page-container">
 
         {/* Header */}
-        <div className="text-center mb-8 animate-fade-in-up">
+        <div className="page-header text-center">
           <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-5xl text-white shadow-lg ring-4 ring-white mb-4">
             🏢
           </div>
-          <h1 className="text-3xl font-black text-foreground tracking-tight">
+          <h1 className="page-title">
             {hasCompany ? 'Edit Profile' : 'Create Profile'}
           </h1>
-          <p className="text-foreground/60 mt-2 font-medium">
+          <p className="page-subtitle">
             {hasCompany 
               ? 'Update your profile' 
               : 'Create your profile and start inviting helpers to connect'}

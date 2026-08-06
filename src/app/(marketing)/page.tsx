@@ -28,7 +28,7 @@ export default function HomePage() {
 
           <Link
             href="/app/login"
-            className="bg-primary hover:bg-primary-dark text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl shadow-md transition-all whitespace-nowrap"
+            className="btn-primary !w-auto !px-5 !py-2.5 text-xs sm:text-sm whitespace-nowrap shadow-md"
           >
             Open App
           </Link>
@@ -62,14 +62,14 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-3.5 justify-center max-w-xs mx-auto sm:max-w-none mb-14">
             <button
               onClick={handleWaitlistClick}
-              className="bg-primary hover:bg-primary-dark text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-bold text-base sm:text-lg shadow-lg transition-all w-full sm:w-auto"
+              className="btn-primary !w-full sm:!w-auto !px-6 sm:!px-8 !py-3.5 sm:!py-4 text-base sm:text-lg shadow-lg"
             >
               ⚡ Join Android Waitlist
             </button>
 
             <a
               href="#how-it-works"
-              className="border border-primary/20 bg-white/80 backdrop-blur text-foreground px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-bold text-base sm:text-lg hover:bg-primary/5 shadow-sm transition-all w-full sm:w-auto"
+              className="btn-outline !w-full sm:!w-auto !px-6 sm:!px-8 !py-3.5 sm:!py-4 text-base sm:text-lg bg-white/80 backdrop-blur shadow-sm border-primary/20 hover:bg-primary/5"
             >
               How It Works
             </a>
@@ -77,19 +77,19 @@ export default function HomePage() {
 
           {/* STATS/SECTORS GRID */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 max-w-4xl mx-auto">
-            <div className="card-surface p-4 flex items-center justify-center bg-white border border-primary/10 rounded-2xl">
+            <div className="card-surface p-4 flex items-center justify-center bg-white border border-primary/10">
               <p className="font-bold text-sm sm:text-base">👤 Companionship</p>
             </div>
 
-            <div className="card-surface p-4 flex items-center justify-center bg-white border border-primary/10 rounded-2xl">
-              <p className="font-bold text-sm sm:text-base">� Daily Assistance</p>
+            <div className="card-surface p-4 flex items-center justify-center bg-white border border-primary/10">
+              <p className="font-bold text-sm sm:text-base"> Daily Assistance</p>
             </div>
 
-            <div className="card-surface p-4 flex items-center justify-center bg-white border border-primary/10 rounded-2xl">
+            <div className="card-surface p-4 flex items-center justify-center bg-white border border-primary/10">
               <p className="font-bold text-sm sm:text-base">🚗 Errands</p>
             </div>
 
-            <div className="card-surface p-4 flex items-center justify-center bg-white border border-primary/10 rounded-2xl">
+            <div className="card-surface p-4 flex items-center justify-center bg-white border border-primary/10">
               <p className="font-bold text-sm sm:text-base">💬 Social Support</p>
             </div>
           </div>
@@ -150,7 +150,7 @@ export default function HomePage() {
           </p>
           <button 
             onClick={handleWaitlistClick}
-            className="inline-flex items-center bg-black hover:bg-gray-900 text-white px-7 py-3.5 rounded-2xl font-bold text-sm tracking-wide shadow-md transition-all"
+            className="btn-primary !w-auto !bg-black hover:!bg-gray-900 !px-7 !py-3.5 text-sm shadow-md"
           >
             ⚡ Join Android Waitlist
           </button>
@@ -177,7 +177,7 @@ export default function HomePage() {
             ].map((item) => (
               <div
                 key={item}
-                className="bg-white border border-primary/10 rounded-2xl p-4 font-bold text-sm shadow-sm flex items-center justify-center"
+                className="card-surface bg-white border border-primary/10 p-4 font-bold text-sm shadow-sm flex items-center justify-center"
               >
                 {item}
               </div>
@@ -202,7 +202,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl border border-primary/10 shadow-sm p-6 sm:p-8">
+            <div className="card-surface bg-white border border-primary/10 shadow-sm p-6 sm:p-8">
               <h3 className="text-xl font-bold text-foreground mb-4">
                 👤 For Those Who Need Help
               </h3>
@@ -214,7 +214,7 @@ export default function HomePage() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-2xl border border-primary/10 shadow-sm p-6 sm:p-8">
+            <div className="card-surface bg-white border border-primary/10 shadow-sm p-6 sm:p-8">
               <h3 className="text-xl font-bold text-foreground mb-4">
                 🤝 For Helpers
               </h3>
@@ -251,7 +251,7 @@ export default function HomePage() {
             ].map((role) => (
               <div
                 key={role}
-                className="bg-white border border-primary/10 rounded-2xl p-4 text-center shadow-sm font-bold text-sm hover:border-primary/20 transition-all flex items-center justify-center"
+                className="card-surface bg-white border border-primary/10 p-4 text-center shadow-sm font-bold text-sm hover:border-primary/20 transition-all flex items-center justify-center"
               >
                 {role}
               </div>
@@ -273,13 +273,13 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-xs mx-auto sm:max-w-none">
             <button
               onClick={handleWaitlistClick}
-              className="bg-primary hover:bg-primary-dark text-white px-7 py-3.5 rounded-2xl font-bold shadow-md transition-all w-full sm:w-auto"
+              className="btn-primary !w-full sm:!w-auto !px-7 !py-3.5 shadow-md"
             >
               ⚡ Join Android Waitlist
             </button>
             <a
               href="#how-it-works"
-              className="border border-primary/20 bg-white px-7 py-3.5 rounded-2xl font-bold hover:bg-primary/5 shadow-sm transition-all w-full sm:w-auto"
+              className="btn-outline !w-full sm:!w-auto bg-white !px-7 !py-3.5 hover:bg-primary/5 shadow-sm border-primary/20"
             >
               Learn More
             </a>

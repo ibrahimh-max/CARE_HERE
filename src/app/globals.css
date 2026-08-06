@@ -107,6 +107,123 @@ h1, h2, h3, h4, h5, h6 {
   cursor: not-allowed;
 }
 
+.btn-secondary {
+  width: 100%;
+  padding: 14px 20px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--foreground);
+  font-weight: 600;
+  border-radius: var(--radius-button);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-secondary:active {
+  transform: scale(0.96);
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.6;
+  transform: none;
+  cursor: not-allowed;
+}
+
+.btn-outline {
+  width: 100%;
+  padding: 14px 20px;
+  background: transparent;
+  color: var(--foreground);
+  font-weight: 600;
+  border-radius: var(--radius-button);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-outline:active {
+  transform: scale(0.96);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.btn-outline:disabled {
+  opacity: 0.6;
+  transform: none;
+  cursor: not-allowed;
+}
+
+/* Page Layout Utilities */
+.page-container {
+  padding: 32px 16px;
+  max-width: 448px; /* max-w-md */
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 32px;
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.page-title {
+  font-size: 1.875rem; /* text-3xl */
+  line-height: 2.25rem;
+  font-weight: 900; /* font-black */
+  color: var(--foreground);
+  letter-spacing: -0.025em; /* tracking-tight */
+}
+
+.page-subtitle {
+  color: rgba(30, 35, 41, 0.6); /* text-foreground/60 */
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* Empty States */
+.empty-state {
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  padding: 40px;
+  text-align: center;
+  border: 2px dashed rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state-icon {
+  width: 96px;
+  height: 96px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  opacity: 0.5;
+  margin-bottom: 24px;
+}
+
+.empty-state-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 8px;
+}
+
+.empty-state-desc {
+  color: rgba(30, 35, 41, 0.6);
+  max-width: 250px;
+  margin: 0 auto;
+  font-size: 0.875rem;
+}
+
 .badge-pending {
   background: rgba(245, 158, 11, 0.1);
   color: var(--warning);

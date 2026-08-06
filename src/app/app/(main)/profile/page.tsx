@@ -185,12 +185,10 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="py-8 px-4">
-        {/* CHANGE 1: Mobile-first container */}
-        <div className="max-w-md mx-auto">
+      <div className="page-container">
 
-          {/* Profile header with avatar */}
-          <div className="flex flex-col items-center text-center mb-8 animate-fade-in-up">
+        {/* Profile header with avatar */}
+        <div className="page-header flex flex-col items-center text-center">
             <div className="relative">
               <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-4xl text-white font-bold shadow-lg ring-4 ring-white mb-4">
                 {formData.name ? formData.name.charAt(0).toUpperCase() : '👤'}
@@ -199,10 +197,10 @@ export default function ProfilePage() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
               </button>
             </div>
-            <h1 className="text-3xl font-black text-foreground tracking-tight">
+            <h1 className="page-title">
               {formData.name || 'Your Profile'}
             </h1>
-            <p className="text-primary mt-1 font-bold">
+            <p className="page-subtitle text-primary mt-1 font-bold">
               {formData.preferred_role || 'Helper'}
             </p>
           </div>
@@ -451,7 +449,7 @@ export default function ProfilePage() {
               <button
                 type="button"
                 onClick={() => setShowDeleteModal(true)}
-                className="w-full bg-red-50 text-red-600 border border-red-200 px-6 py-3 rounded-xl font-bold hover:bg-red-100 transition-colors"
+                className="btn-outline text-danger border-danger hover:bg-red-50 mt-4"
               >
                 Delete Account
               </button>
@@ -463,7 +461,6 @@ export default function ProfilePage() {
             </div>
           </div>
 
-        </div>
       </div>
 
       {/* Delete Confirmation Modal */}

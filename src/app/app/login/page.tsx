@@ -88,8 +88,8 @@ export default function Login() {
       {/* Top Accent Strip */}
       <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primary-dark"></div>
 
-      <div className="flex-1 flex items-center justify-center py-12 px-4">
-        <div className="w-full max-w-md animate-fade-in-up">
+      <div className="flex-1 flex flex-col justify-center">
+        <div className="page-container w-full animate-fade-in-up">
           
           {/* Brand Header */}
           <div className="text-center mb-10">

@@ -195,18 +195,16 @@ export default function RequestsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="py-8 px-4">
-        {/* CHANGE 1: Mobile-first container */}
-        <div className="max-w-md mx-auto">
+      <div className="page-container">
 
-          {/* App-like header */}
-          <div className="mb-6 animate-fade-in-up">
+        {/* App-like header */}
+          <div className="page-header">
             <div className="flex justify-between items-end">
               <div>
-                <h1 className="text-3xl font-black text-foreground tracking-tight">
+                <h1 className="page-title">
                   {profile?.role === 'employer' ? 'Sent Requests' : 'Inbox'}
                 </h1>
-                <p className="text-foreground/60 mt-1 font-medium">
+                <p className="page-subtitle">
                   {profile?.role === 'employer'
                     ? `${requests.length} total invitations`
                     : `${workerInvitations.length} total invitations`}
@@ -259,12 +257,10 @@ export default function RequestsPage() {
                   <div className="skeleton h-32 w-full"></div>
                 </div>
               ) : requests.length === 0 ? (
-                <div className="card-surface p-10 text-center border-dashed border-2 border-gray-200 shadow-none mt-8">
-                  <div className="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span className="text-5xl opacity-50">📭</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">No Help Requests Sent</h3>
-                  <p className="text-foreground/60 max-w-[200px] mx-auto">
+                <div className="empty-state mt-8">
+                  <div className="empty-state-icon">📭</div>
+                  <h3 className="empty-state-title">No Help Requests Sent</h3>
+                  <p className="empty-state-desc">
                     When you invite helpers to connect, the requests will appear here.
                   </p>
                 </div>
@@ -341,12 +337,10 @@ export default function RequestsPage() {
                   <div className="skeleton h-48 w-full"></div>
                 </div>
               ) : workerInvitations.length === 0 ? (
-                <div className="card-surface p-10 text-center border-dashed border-2 border-gray-200 shadow-none mt-8">
-                  <div className="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span className="text-5xl opacity-50">📬</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">No Help Requests Yet</h3>
-                  <p className="text-foreground/60 max-w-[200px] mx-auto">
+                <div className="empty-state mt-8">
+                  <div className="empty-state-icon">📬</div>
+                  <h3 className="empty-state-title">No Help Requests Yet</h3>
+                  <p className="empty-state-desc">
                     Requesters will be able to invite you here.
                   </p>
                 </div>
@@ -379,11 +373,11 @@ export default function RequestsPage() {
 
                           {/* Status / Actions */}
                           {invitation.status === 'pending' ? (
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 mt-2">
                               <button
                                 onClick={() => updateInterviewStatus(invitation.id, 'interested')}
                                 disabled={updatingId === invitation.id}
-                                className="flex-1 bg-success text-white py-2.5 rounded-xl text-sm font-bold hover:bg-green-600 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                                className="btn-primary flex-1 !bg-success hover:!bg-green-600 text-sm"
                               >
                                 {updatingId === invitation.id ? (
                                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -397,7 +391,7 @@ export default function RequestsPage() {
                               <button
                                 onClick={() => updateInterviewStatus(invitation.id, 'not_interested')}
                                 disabled={updatingId === invitation.id}
-                                className="flex-1 bg-gray-100 text-foreground py-2.5 rounded-xl text-sm font-bold hover:bg-gray-200 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                                className="btn-secondary flex-1 text-sm"
                               >
                                 {updatingId === invitation.id ? (
                                   <div className="w-4 h-4 border-2 border-foreground border-t-transparent rounded-full animate-spin"></div>
@@ -428,7 +422,6 @@ export default function RequestsPage() {
             </div>
           )}
 
-        </div>
       </div>
     </div>
   );

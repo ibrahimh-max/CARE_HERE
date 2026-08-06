@@ -180,16 +180,14 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="py-8 px-4">
-        {/* CHANGE 1: Mobile-first container */}
-        <div className="max-w-md mx-auto">
+      <div className="page-container">
 
-          {/* App-like header */}
-          <div className="mb-8 animate-fade-in-up">
-            <p className="text-sm font-medium text-foreground/50 uppercase tracking-wider mb-1">
+        {/* App-like header */}
+          <div className="page-header">
+            <p className="page-subtitle text-sm uppercase tracking-wider mb-1">
               {new Date().getHours() < 12 ? 'Good morning' : new Date().getHours() < 18 ? 'Good afternoon' : 'Good evening'}
             </p>
-            <h1 className="text-3xl font-black text-foreground tracking-tight">
+            <h1 className="page-title">
               {profile?.name?.split(' ')[0] || 'User'} 👋
             </h1>
             {profile?.role === 'worker' && (
@@ -317,10 +315,10 @@ export default function Dashboard() {
                     <div className="skeleton h-32 w-full"></div>
                   </div>
                 ) : interviewInvitations.length === 0 ? (
-                  <div className="card-surface p-8 text-center border-dashed border-2 border-gray-200 shadow-none">
-                    <div className="text-4xl mb-4 opacity-50">📫</div>
-                    <h3 className="text-lg font-bold text-foreground mb-2">No help requests yet</h3>
-                    <p className="text-foreground/60 text-sm">
+                  <div className="empty-state">
+                    <div className="empty-state-icon">📫</div>
+                    <h3 className="empty-state-title">No help requests yet</h3>
+                    <p className="empty-state-desc">
                       When requesters want to connect with you, their requests will appear here.
                     </p>
                   </div>
@@ -346,18 +344,18 @@ export default function Dashboard() {
                             </p>
                             
                             {invitation.status === 'pending' ? (
-                              <div className="flex gap-2">
+                              <div className="flex gap-2 mt-4">
                                 <button
                                   onClick={() => updateInterviewStatus(invitation.id, 'interested')}
                                   disabled={updatingInterviewId === invitation.id}
-                                  className="flex-1 bg-success text-white py-2 rounded-lg text-sm font-bold hover:bg-green-600 transition-colors disabled:opacity-50"
+                                  className="btn-primary flex-1 !bg-success hover:!bg-green-600 text-sm"
                                 >
                                   Interested
                                 </button>
                                 <button
                                   onClick={() => updateInterviewStatus(invitation.id, 'not_interested')}
                                   disabled={updatingInterviewId === invitation.id}
-                                  className="flex-1 bg-gray-100 text-foreground py-2 rounded-lg text-sm font-bold hover:bg-gray-200 transition-colors disabled:opacity-50"
+                                  className="btn-secondary flex-1 text-sm"
                                 >
                                   Decline
                                 </button>
@@ -446,7 +444,6 @@ export default function Dashboard() {
             </div>
           )}
 
-        </div>
       </div>
     </div>
   );

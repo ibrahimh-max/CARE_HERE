@@ -214,18 +214,16 @@ export default function CandidatesPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="py-8 px-4">
-        {/* CHANGE 1: Mobile-first container */}
-        <div className="max-w-md mx-auto">
+      <div className="page-container">
 
-          {/* App-like header */}
-          <div className="mb-6 animate-fade-in-up">
+        {/* App-like header */}
+          <div className="page-header">
             <div className="flex items-end justify-between">
               <div>
-                <h1 className="text-3xl font-black text-foreground tracking-tight">
+                <h1 className="page-title">
                   Find Helpers
                 </h1>
-                <p className="text-foreground/60 mt-1 font-medium">
+                <p className="page-subtitle">
                   {filteredCandidates.length} helpers available
                 </p>
               </div>
@@ -343,12 +341,10 @@ export default function CandidatesPage() {
               <div className="skeleton h-48 w-full"></div>
             </div>
           ) : filteredCandidates.length === 0 ? (
-            <div className="card-surface p-10 text-center animate-fade-in-up border-dashed border-2 border-gray-200 shadow-none mt-8">
-              <div className="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-5xl opacity-50">🔍</span>
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">No Helpers Found</h3>
-              <p className="text-foreground/60 mb-6 max-w-[200px] mx-auto">
+            <div className="empty-state mt-8">
+              <div className="empty-state-icon">🔍</div>
+              <h3 className="empty-state-title">No Helpers Found</h3>
+              <p className="empty-state-desc mb-6">
                 Try adjusting your filters to see more results.
               </p>
               {candidates.length > 0 && (
@@ -445,7 +441,6 @@ export default function CandidatesPage() {
             </div>
           )}
 
-        </div>
       </div>
     </div>
   );
