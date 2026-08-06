@@ -218,7 +218,7 @@ const fetchJobs = async () => {
 
         {/* Error */}
         {error && (
-          <div className="mb-6 px-4 py-3 bg-red-50 border border-red-100 text-red-700 rounded-xl text-sm">
+          <div className="mb-6 px-4 py-3 bg-red-50 border border-red-100 text-red-700 rounded-xl text-sm animate-error-shake">
             {error}
           </div>
         )}

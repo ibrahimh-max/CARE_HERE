@@ -212,19 +212,19 @@ export default function Dashboard() {
 
           {/* Error */}
           {error && (
-            <div className="mb-6 p-4 rounded-xl border border-red-200 bg-red-50 text-red-700">
+            <div className="mb-6 p-4 rounded-xl border border-red-200 bg-red-50 text-red-700 animate-error-shake">
               {error}
             </div>
           )}
 
           {/* Interview Success/Error Messages */}
           {interviewSuccess && (
-            <div className="mb-6 p-4 rounded-xl border border-green-200 bg-green-50 text-green-700">
+            <div className="mb-6 p-4 rounded-xl border border-green-200 bg-green-50 text-green-700 animate-success-pop">
               {interviewSuccess}
             </div>
           )}
           {interviewError && (
-            <div className="mb-6 p-4 rounded-xl border border-red-200 bg-red-50 text-red-700">
+            <div className="mb-6 p-4 rounded-xl border border-red-200 bg-red-50 text-red-700 animate-error-shake">
               {interviewError}
             </div>
           )}

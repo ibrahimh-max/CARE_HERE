@@ -242,7 +242,7 @@ export default function RequestsPage() {
 
           {/* Error */}
           {error && (
-            <div className="mb-6 p-4 rounded-xl border border-red-200 bg-red-50 text-red-700 font-medium">
+            <div className="mb-6 p-4 rounded-xl border border-red-200 bg-red-50 text-red-700 font-medium animate-error-shake">
               {error}
             </div>
           )}
@@ -326,7 +326,7 @@ export default function RequestsPage() {
           {profile?.role === 'worker' && (
             <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
               {successMsg && (
-                <div className="mb-6 p-4 rounded-xl border border-green-200 bg-green-50 text-green-700 font-medium">
+                <div className="mb-6 p-4 rounded-xl border border-green-200 bg-green-50 text-green-700 font-medium animate-success-pop">
                   {successMsg}
                 </div>
               )}

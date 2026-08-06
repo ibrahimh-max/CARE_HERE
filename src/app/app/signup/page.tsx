@@ -109,7 +109,7 @@ export default function Signup() {
 
           {/* Success State */}
           {success ? (
-            <div className="card-surface p-10 text-center animate-fade-in-up">
+            <div className="card-surface p-10 text-center animate-success-pop">
               <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl shadow-sm border border-green-200">
                 ✓
               </div>
@@ -134,7 +134,7 @@ export default function Signup() {
 
               {/* Error */}
               {error && (
-                <div className="mb-5 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">
+                <div className="mb-5 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm animate-error-shake">
                   {error}
                 </div>
               )}

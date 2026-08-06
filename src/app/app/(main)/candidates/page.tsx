@@ -235,12 +235,12 @@ export default function CandidatesPage() {
 
           {/* Error & Success Banners */}
           {error && (
-            <div className="mb-6 p-4 rounded-xl border border-red-200 bg-red-50 text-red-700 font-medium">
+            <div className="mb-6 p-4 rounded-xl border border-red-200 bg-red-50 text-red-700 font-medium animate-error-shake">
               {error}
             </div>
           )}
           {successMessage && (
-            <div className="mb-6 p-4 rounded-xl border border-green-200 bg-green-50 text-green-700 font-medium">
+            <div className="mb-6 p-4 rounded-xl border border-green-200 bg-green-50 text-green-700 font-medium animate-success-pop">
               {successMessage}
             </div>
           )}
