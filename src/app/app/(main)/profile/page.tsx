@@ -230,8 +230,8 @@ export default function ProfilePage() {
             {/* Availability toggle */}
             <div className="card-surface p-5 flex items-center justify-between">
               <div>
-                <h3 className="font-bold text-foreground">Available For Connecting</h3>
-                <p className="text-sm text-foreground/60 mt-0.5">Requesters can discover and invite you</p>
+                <h3 className="font-bold text-foreground">Open to Opportunities</h3>
+                <p className="text-sm text-foreground/60 mt-0.5">When on, requesters can discover and invite you</p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
@@ -261,7 +261,8 @@ export default function ProfilePage() {
                     onChange={handleChange}
                     required
                     className="input-field"
-                    placeholder="Enter your full name"
+                    placeholder="e.g. Rahul Sharma"
+                    autoComplete="name"
                   />
                 </div>
 
@@ -277,8 +278,10 @@ export default function ProfilePage() {
                     onChange={handleChange}
                     required
                     className="input-field"
-                    placeholder="Enter your phone number"
+                    placeholder="e.g. +91 9876543210"
+                    autoComplete="tel"
                   />
+                  <p className="mt-1.5 text-xs text-foreground/45">Requesters may use this to confirm details before hiring.</p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -335,7 +338,8 @@ export default function ProfilePage() {
 
             {/* Hospitality Information Block */}
             <div className="card-surface p-5">
-              <h3 className="font-bold text-lg text-foreground mb-4">Experience Info</h3>
+              <h3 className="font-bold text-lg text-foreground mb-1">Experience</h3>
+              <p className="text-sm text-foreground/50 mb-4">This helps requesters find the right match for their needs.</p>
               <div className="space-y-4">
                 <div>
                   <label htmlFor="preferred_role" className="block text-sm font-bold text-foreground mb-1.5">

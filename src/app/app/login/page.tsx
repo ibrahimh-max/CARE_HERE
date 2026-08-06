@@ -132,7 +132,7 @@ export default function Login() {
                 Welcome back
               </h2>
               <p className="text-foreground/60 mt-1.5">
-                Sign in to your account
+                Sign in to continue
               </p>
             </div>
 
@@ -176,6 +176,8 @@ export default function Login() {
                   value={formData.email}
                   onChange={handleChange}
                   className="input-field"
+                  placeholder="you@example.com"
+                  autoComplete="email"
                 />
               </div>
 
@@ -196,6 +198,8 @@ export default function Login() {
                   value={formData.password}
                   onChange={handleChange}
                   className="input-field"
+                  placeholder="Your password"
+                  autoComplete="current-password"
                 />
               </div>
 

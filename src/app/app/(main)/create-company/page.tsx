@@ -185,12 +185,12 @@ export default function CreateCompanyPage() {
             🏢
           </div>
           <h1 className="page-title">
-            {hasCompany ? 'Edit Profile' : 'Create Profile'}
+            {hasCompany ? 'Edit Profile' : 'Set Up Your Profile'}
           </h1>
           <p className="page-subtitle">
             {hasCompany 
-              ? 'Update your profile' 
-              : 'Create your profile and start inviting helpers to connect'}
+              ? 'Keep your profile up to date so helpers know who you are.' 
+              : 'Tell helpers a bit about yourself. This only takes a moment.'}
           </p>
         </div>
 
@@ -205,10 +205,10 @@ export default function CreateCompanyPage() {
         <div className="card-surface p-5 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
           <form onSubmit={handleSubmit} className="space-y-5">
 
-            {/* Company Name */}
+            {/* Profile Name */}
             <div>
               <label className="block mb-1.5 text-sm font-bold text-foreground">
-                Profile Name *
+                Your name or business name *
               </label>
               <input
                 type="text"
@@ -217,11 +217,13 @@ export default function CreateCompanyPage() {
                 onChange={handleChange}
                 required
                 className="input-field"
-                placeholder="Your Name"
+                placeholder="e.g. The Sharma Family, Sunrise Hotel"
+                autoComplete="organization"
               />
+              <p className="mt-1.5 text-xs text-foreground/45">Helpers will see this name when you reach out to them.</p>
             </div>
 
-            {/* Company Type */}
+            {/* Business Type */}
             <div>
               <label className="block mb-1.5 text-sm font-bold text-foreground">
                 Business Type *
@@ -233,7 +235,7 @@ export default function CreateCompanyPage() {
                 required
                 className="input-field bg-white"
               >
-                <option value="">Select Type</option>
+                <option value="">Select your business type...</option>
                 <option value="Hotel">Hotel</option>
                 <option value="Restaurant">Restaurant</option>
                 <option value="Cafe">Cafe</option>
@@ -257,14 +259,16 @@ export default function CreateCompanyPage() {
                 onChange={handleChange}
                 required
                 className="input-field"
-                placeholder="e.g. Hyderabad"
+                placeholder="e.g. Hyderabad, Banjara Hills"
+                autoComplete="address-level2"
               />
+              <p className="mt-1.5 text-xs text-foreground/45">Helps helpers nearby find and connect with you.</p>
             </div>
 
             {/* Description */}
             <div>
               <label className="block mb-1.5 text-sm font-bold text-foreground">
-                About Your Business
+                About You <span className="font-normal text-foreground/40">(optional)</span>
               </label>
               <textarea
                 name="description"
@@ -272,18 +276,23 @@ export default function CreateCompanyPage() {
                 onChange={handleChange}
                 rows={4}
                 className="input-field resize-none"
-                placeholder="Tell helpers about yourself..."
+                placeholder="Briefly describe what kind of help you're looking for, your schedule, or anything else helpers should know..."
               />
             </div>
 
             {/* Info Box */}
-            <div className="bg-primary/5 rounded-xl p-4">
-              <p className="font-bold text-primary">
-                Connecting Starts Here
-              </p>
-              <p className="text-sm text-foreground/60 mt-1 font-medium">
-                Once your profile is created, you'll be able to browse helpers and send help requests.
-              </p>
+            <div className="bg-primary/5 rounded-xl p-4 flex gap-3 items-start">
+              <span className="text-primary text-lg mt-0.5">💡</span>
+              <div>
+                <p className="font-bold text-primary text-sm">
+                  {hasCompany ? 'Tip' : 'What happens next?'}
+                </p>
+                <p className="text-sm text-foreground/60 mt-0.5 font-medium">
+                  {hasCompany
+                    ? 'A complete profile makes it easier for helpers to trust and connect with you.'
+                    : 'Once saved, you can browse available helpers and send them a help request directly from the app.'}
+                </p>
+              </div>
             </div>
 
             {/* Submit */}

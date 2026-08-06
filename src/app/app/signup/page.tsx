@@ -139,7 +139,7 @@ export default function Signup() {
           {/* Brand Header */}
           <div className="text-center mb-10">
             <h1 className="text-4xl font-black text-primary tracking-tight mb-2">CareLink</h1>
-            <p className="text-foreground/70 font-medium tracking-wide text-sm uppercase">Companionship & Assistance, Simplified</p>
+            <p className="text-foreground/70 font-medium tracking-wide text-sm uppercase">Companionship &amp; Assistance, Simplified</p>
           </div>
 
           {/* Success State */}
@@ -148,10 +148,13 @@ export default function Signup() {
               <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl shadow-sm border border-green-200">
                 ✓
               </div>
-              <h2 className="text-2xl font-bold text-foreground mb-3">Check your inbox</h2>
-              <p className="text-foreground/70 mb-8">
-                We've sent a verification link to<br/>
+              <h2 className="text-2xl font-bold text-foreground mb-2">You&apos;re almost in!</h2>
+              <p className="text-foreground/70 mb-3">
+                We sent a confirmation link to<br/>
                 <span className="font-semibold text-foreground">{formData.email}</span>
+              </p>
+              <p className="text-sm text-foreground/50 mb-8">
+                Open the email and click the link to activate your account, then come back to sign in.
               </p>
               <div className="animate-pulse bg-primary/10 h-2 w-32 rounded-full mx-auto"></div>
             </div>
@@ -163,7 +166,7 @@ export default function Signup() {
                   Create an account
                 </h2>
                 <p className="text-foreground/60 mt-1.5">
-                  Start your journey
+                  Free to join — takes under a minute
                 </p>
               </div>
 
@@ -193,6 +196,8 @@ export default function Signup() {
                     value={formData.name}
                     onChange={handleChange}
                     className="input-field"
+                    placeholder="e.g. Sarah Johnson"
+                    autoComplete="name"
                   />
                 </div>
 
@@ -212,6 +217,8 @@ export default function Signup() {
                     value={formData.email}
                     onChange={handleChange}
                     className="input-field"
+                    placeholder="you@example.com"
+                    autoComplete="email"
                   />
                 </div>
 
@@ -221,7 +228,7 @@ export default function Signup() {
                     htmlFor="password"
                     className="block text-sm font-medium text-foreground/80 mb-1"
                   >
-                    Password (min. 6 characters)
+                    Password
                   </label>
                   <input
                     type="password"
@@ -232,13 +239,16 @@ export default function Signup() {
                     value={formData.password}
                     onChange={handleChange}
                     className="input-field"
+                    placeholder="At least 6 characters"
+                    autoComplete="new-password"
                   />
+                  <p className="mt-1.5 text-xs text-foreground/45">Use a mix of letters and numbers for a stronger password.</p>
                 </div>
 
                 {/* Role */}
                 <div>
                   <label className="block text-sm font-medium text-foreground/80 mb-2">
-                    I am a
+                    I want to
                   </label>
                   <div className="grid grid-cols-2 gap-3">
                     <button
@@ -250,9 +260,9 @@ export default function Signup() {
                           : 'border-gray-100 bg-white hover:border-gray-200 hover:bg-gray-50'
                       }`}
                     >
-                      <span className="text-2xl mb-2">💼</span>
-                      <span className="font-semibold text-sm">Helper</span>
-                      <span className="text-xs opacity-70 mt-0.5">Looking to help</span>
+                      <span className="text-2xl mb-2">🤝</span>
+                      <span className="font-semibold text-sm">Offer Help</span>
+                      <span className="text-xs opacity-70 mt-0.5">I'm a helper</span>
                     </button>
 
                     <button
@@ -264,9 +274,9 @@ export default function Signup() {
                           : 'border-gray-100 bg-white hover:border-gray-200 hover:bg-gray-50'
                       }`}
                     >
-                      <span className="text-2xl mb-2">🏢</span>
-                      <span className="font-semibold text-sm">Requester</span>
-                      <span className="text-xs opacity-70 mt-0.5">Looking for help</span>
+                      <span className="text-2xl mb-2">🏠</span>
+                      <span className="font-semibold text-sm">Find Help</span>
+                      <span className="text-xs opacity-70 mt-0.5">I need assistance</span>
                     </button>
                   </div>
                 </div>

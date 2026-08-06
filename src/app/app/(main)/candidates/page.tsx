@@ -370,7 +370,7 @@ export default function CandidatesPage() {
                 </div>
               ))}
             </div>
-          ) : (filteredCandidates.length === 0 ? (
+          ) : filteredCandidates.length === 0 ? (
             <div className="empty-state mt-8">
               <div className="empty-state-icon">🔍</div>
               <h3 className="empty-state-title">No Helpers Found</h3>
