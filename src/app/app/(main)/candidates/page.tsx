@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import EmptyState from '@/components/EmptyState';
+import { friendlyError } from '@/lib/errorMessage';
 
 export const dynamic = 'force-dynamic';
 
@@ -27,18 +28,11 @@ export default function CandidatesPage() {
   const router = useRouter();
 
   const [candidates, setCandidates] = useState<Candidate[]>([]);
-  const [filteredCandidates, setFilteredCandidates] = useState<Candidate[]>([]);
   const [pageLoading, setPageLoading] = useState(false);
   const [error, setError] = useState('');
-  
-  // Add State
+
   const [sendingRequest, setSendingRequest] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState('');
-
-  useEffect(() => {
-    console.log('CANDIDATES MOUNT');
-    return () => console.log('CANDIDATES UNMOUNT');
-  }, []);
 
   // Filters
   const [locationFilter, setLocationFilter] = useState('');
@@ -62,46 +56,70 @@ export default function CandidatesPage() {
       router.push('/app/dashboard');
       return;
     }
-  }, [user?.id, profile?.role, loading, authInitialized, router]);
+  }, [user, profile, loading, authInitialized, router]);
+
+  const fetchCandidates = useCallback(async () => {
+    setPageLoading(true);
+    setError('');
+
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('role', 'worker')
+        .eq('is_available', true)
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        setError(friendlyError(error, "We couldn't load available talent. Please try again."));
+        return;
+      }
+
+      setCandidates(data || []);
+    } catch {
+      setError("We couldn't load available talent. Please try again.");
+    } finally {
+      setPageLoading(false);
+    }
+  }, []);
 
   // Fetch candidates — use primitives to avoid re-fetch on every profile object refresh
   useEffect(() => {
     if (!user?.id || profile?.role !== 'employer') return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- data fetch on mount, not derived state
     fetchCandidates();
-  }, [user?.id, profile?.role]);
+  }, [user?.id, profile?.role, fetchCandidates]);
 
-  // Apply filters
-  useEffect(() => {
+  const filteredCandidates = useMemo(() => {
     let filtered = candidates;
 
     if (locationFilter) {
-      filtered = filtered.filter(c => 
+      filtered = filtered.filter(c =>
         c.location?.toLowerCase().includes(locationFilter.toLowerCase())
       );
     }
 
     if (experienceFilter) {
-      filtered = filtered.filter(c => 
+      filtered = filtered.filter(c =>
         c.experience === experienceFilter
       );
     }
 
     if (preferredRoleFilter) {
-      filtered = filtered.filter(c => 
+      filtered = filtered.filter(c =>
         c.preferred_role === preferredRoleFilter
       );
     }
 
     if (availabilityFilter) {
-      filtered = filtered.filter(c => 
+      filtered = filtered.filter(c =>
         c.availability === availabilityFilter
       );
     }
 
-    setFilteredCandidates(filtered);
+    return filtered;
   }, [candidates, locationFilter, experienceFilter, preferredRoleFilter, availabilityFilter]);
 
-  // Add Function
   const sendInterviewRequest = async (workerId: string) => {
     if (!user || !profile) return;
 
@@ -140,7 +158,7 @@ export default function CandidatesPage() {
         });
 
       if (error) {
-        setError(error.message);
+        setError(friendlyError(error, "We couldn't send your request. Please try again."));
         return;
       }
 
@@ -151,37 +169,9 @@ export default function CandidatesPage() {
       }, 3000);
 
     } catch {
-      setError('Failed to send help request.');
+      setError("We couldn't send your request. Please try again.");
     } finally {
       setSendingRequest(null);
-    }
-  };
-
-  const fetchCandidates = async () => {
-    console.log('CANDIDATES FETCH START');
-    setPageLoading(true);
-    setError('');
-
-    try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('role', 'worker')
-        .eq('is_available', true)
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        setError(error.message);
-        return;
-      }
-
-      setCandidates(data || []);
-      setFilteredCandidates(data || []);
-    } catch (err) {
-      setError('Failed to fetch candidates');
-    } finally {
-      console.log('CANDIDATES FETCH END');
-      setPageLoading(false);
     }
   };
 

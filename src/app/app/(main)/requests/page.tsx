@@ -1,19 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { InterviewInvitation } from '@/lib/supabase';
 import EmptyState from '@/components/EmptyState';
+import { friendlyError } from '@/lib/errorMessage';
 
 export const dynamic = 'force-dynamic';
 
-// Worker invitation type (received by worker)
-interface WorkerInvitation extends InterviewInvitation {
-  // uses fields already on InterviewInvitation
-}
+// Worker invitation type (received by worker) — same shape as InterviewInvitation
+type WorkerInvitation = InterviewInvitation;
 
 interface InterviewRequestWithWorker extends InterviewInvitation {
   worker_name?: string;
@@ -32,11 +31,6 @@ export default function RequestsPage() {
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState('');
 
-  useEffect(() => {
-    console.log('REQUESTS MOUNT');
-    return () => console.log('REQUESTS UNMOUNT');
-  }, []);
-
   // Handle authentication redirect
   useEffect(() => {
     if (loading || !authInitialized) {
@@ -49,21 +43,9 @@ export default function RequestsPage() {
     }
 
     // Both worker and employer can access this page
-  }, [user?.id, profile?.role, loading, authInitialized, router]);
+  }, [user, profile, loading, authInitialized, router]);
 
-  // Fetch interview requests
-  useEffect(() => {
-    if (!user || !profile) return;
-
-    if (profile.role === 'employer') {
-      fetchRequests();
-    } else if (profile.role === 'worker') {
-      fetchWorkerInvitations();
-    }
-  }, [user?.id, profile?.role]);
-
-  const fetchRequests = async () => {
-    console.log('REQUESTS FETCH START');
+  const fetchRequests = useCallback(async () => {
     setPageLoading(true);
     setError('');
 
@@ -76,7 +58,7 @@ export default function RequestsPage() {
         .order('created_at', { ascending: false });
 
       if (invitationsError) {
-        setError(invitationsError.message);
+        setError(friendlyError(invitationsError, "We couldn't load your requests. Please try again."));
         return;
       }
 
@@ -95,7 +77,7 @@ export default function RequestsPage() {
         .in('id', workerIds);
 
       if (profilesError) {
-        setError(profilesError.message);
+        setError(friendlyError(profilesError, "We couldn't load your requests. Please try again."));
         return;
       }
 
@@ -109,17 +91,15 @@ export default function RequestsPage() {
       }));
 
       setRequests(transformedData);
-    } catch (err) {
-      setError('Failed to fetch interview requests');
+    } catch {
+      setError("We couldn't load your requests. Please try again.");
     } finally {
-      console.log('REQUESTS FETCH END');
       setPageLoading(false);
     }
-  };
+  }, [user]);
 
   // Fetch interview invitations received by worker
-  const fetchWorkerInvitations = async () => {
-    console.log('REQUESTS FETCH START');
+  const fetchWorkerInvitations = useCallback(async () => {
     setPageLoading(true);
     setError('');
 
@@ -131,18 +111,29 @@ export default function RequestsPage() {
         .order('created_at', { ascending: false });
 
       if (fetchError) {
-        setError(fetchError.message);
+        setError(friendlyError(fetchError, "We couldn't load your requests. Please try again."));
         return;
       }
 
       setWorkerInvitations(data || []);
-    } catch (err) {
-      setError('Failed to fetch interview requests');
+    } catch {
+      setError("We couldn't load your requests. Please try again.");
     } finally {
-      console.log('REQUESTS FETCH END');
       setPageLoading(false);
     }
-  };
+  }, [user]);
+
+  // Fetch interview requests
+  useEffect(() => {
+    if (!user || !profile) return;
+
+    if (profile.role === 'employer') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- data fetch on mount, not derived state
+      fetchRequests();
+    } else if (profile.role === 'worker') {
+      fetchWorkerInvitations();
+    }
+  }, [user, profile, fetchRequests, fetchWorkerInvitations]);
 
   // Update interview status (worker responding)
   const updateInterviewStatus = async (invitationId: string, newStatus: 'interested' | 'not_interested') => {
@@ -157,7 +148,7 @@ export default function RequestsPage() {
         .eq('id', invitationId);
 
       if (updateError) {
-        setError('Failed to update status');
+        setError(friendlyError(updateError, "We couldn't update your response. Please try again."));
         return;
       }
 
@@ -167,8 +158,8 @@ export default function RequestsPage() {
       setTimeout(() => {
         setSuccessMsg('');
       }, 3000);
-    } catch (err) {
-      setError('Failed to update status');
+    } catch {
+      setError("We couldn't update your response. Please try again.");
     } finally {
       setUpdatingId(null);
     }
@@ -322,7 +313,7 @@ export default function RequestsPage() {
                           {request.message && (
                             <div className="bg-gray-50 rounded-lg p-3 border border-gray-100 mb-3">
                               <p className="text-sm text-foreground/70 italic line-clamp-2">
-                                "{request.message}"
+                                &quot;{request.message}&quot;
                               </p>
                             </div>
                           )}

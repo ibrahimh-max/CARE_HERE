@@ -106,7 +106,7 @@ export default function HomePage() {
               Why CareLink?
             </h2>
             <p className="text-foreground/60 text-sm sm:text-base font-medium">
-              Finding trusted local help shouldn't be difficult. We make it simple.
+              Finding trusted local help shouldn&apos;t be difficult. We make it simple.
             </p>
           </div>
 

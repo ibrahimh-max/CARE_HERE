@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
+import { friendlyError } from '@/lib/errorMessage';
 
 export const dynamic = 'force-dynamic';
 
@@ -38,7 +39,6 @@ export default function ProfilePage() {
     start_availability: '',
   });
 
-  const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState('');
@@ -58,23 +58,24 @@ export default function ProfilePage() {
     }
   }, [user, loading, authInitialized, router]);
 
-  // Load profile data
-  useEffect(() => {
-    if (profile) {
-      setFormData({
-        name: profile.name || '',
-        phone: profile.phone || '',
-        age: profile.age ? profile.age.toString() : '',
-        address: profile.address || '',
-        location: profile.location || '',
-        availability: profile.availability || '',
-        preferred_role: profile.preferred_role || '',
-        is_available: profile.is_available ?? true,
-        hospitality_experience: profile.hospitality_experience || '',
-        start_availability: profile.start_availability || '',
-      });
-    }
-  }, [profile]);
+  // Load profile data into the form once it arrives — done during render (not an
+  // effect) so the form isn't reset on every re-render, only when profile actually changes.
+  const [loadedProfileId, setLoadedProfileId] = useState<string | null>(null);
+  if (profile && profile.id !== loadedProfileId) {
+    setLoadedProfileId(profile.id);
+    setFormData({
+      name: profile.name || '',
+      phone: profile.phone || '',
+      age: profile.age ? profile.age.toString() : '',
+      address: profile.address || '',
+      location: profile.location || '',
+      availability: profile.availability || '',
+      preferred_role: profile.preferred_role || '',
+      is_available: profile.is_available ?? true,
+      hospitality_experience: profile.hospitality_experience || '',
+      start_availability: profile.start_availability || '',
+    });
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -108,19 +109,19 @@ export default function ProfilePage() {
         .eq('id', user?.id);
 
       if (error) {
-        setError(error.message);
+        setError(friendlyError(error, "We couldn't save your profile. Please try again."));
         return;
       }
 
       setSuccessMessage('✅ Profile saved successfully');
-      
+
       // Refresh profile in background, don't block UI
       refreshProfile().catch(console.error);
 
       // Redirect immediately
       router.push('/app/dashboard');
-    } catch (err) {
-      setError('Failed to update profile');
+    } catch {
+      setError("We couldn't save your profile. Please try again.");
     } finally {
       setIsSaving(false);
     }
@@ -152,8 +153,8 @@ export default function ProfilePage() {
 
       await signOut();
       router.push('/app/login');
-    } catch (err: any) {
-      setError(err?.message || 'Failed to delete account. Please try again.');
+    } catch (err) {
+      setError(friendlyError(err, 'We could not delete your account. Please try again.'));
       setIsDeleting(false);
       setShowDeleteModal(false);
     }

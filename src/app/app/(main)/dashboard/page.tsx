@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -8,6 +8,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { InterviewInvitation } from '@/lib/supabase';
 import EmptyState from '@/components/EmptyState';
+import { friendlyError } from '@/lib/errorMessage';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,7 +16,6 @@ export default function Dashboard() {
   const { user, profile, loading, authInitialized } = useAuth();
   const router = useRouter();
 
-  const [dashboardLoading, setDashboardLoading] = useState(false);
   const [error, setError] = useState('');
   const [totalCandidates, setTotalCandidates] = useState(0);
   const [candidatesLoading, setCandidatesLoading] = useState(false);
@@ -24,13 +24,6 @@ export default function Dashboard() {
   const [updatingInterviewId, setUpdatingInterviewId] = useState<string | null>(null);
   const [interviewSuccess, setInterviewSuccess] = useState('');
   const [interviewError, setInterviewError] = useState('');
-
-  useEffect(() => {
-    console.log('DASHBOARD MOUNT');
-    return () => console.log('DASHBOARD UNMOUNT');
-  }, []);
-  
-
 
   // Handle authentication redirect
   useEffect(() => {
@@ -53,23 +46,11 @@ export default function Dashboard() {
         return;
       }
     }
-  }, [user?.id, profile?.role, loading, authInitialized, router]);
-
-  // Fetch dashboard data
-  useEffect(() => {
-    if (!user || !profile) return;
-
-    if (profile.role === 'employer') {
-      fetchEmployerData();
-    } else if (profile.role === 'worker') {
-      fetchInterviewInvitations();
-    }
-  }, [user?.id, profile?.role]);
+  }, [user, profile, loading, authInitialized, router]);
 
   // Fetch employer data in parallel
-  const fetchEmployerData = async () => {
+  const fetchEmployerData = useCallback(async () => {
     if (!user) return;
-    console.log('DASHBOARD FETCH START');
     setCandidatesLoading(true);
     setError('');
 
@@ -80,7 +61,7 @@ export default function Dashboard() {
       ]);
 
       if (companyRes.error) {
-        setError('Failed to load company data: ' + companyRes.error.message);
+        setError(friendlyError(companyRes.error, "We couldn't load your company data. Please try again."));
         return;
       }
 
@@ -90,21 +71,19 @@ export default function Dashboard() {
       }
 
       if (candidatesRes.error) {
-        setError(candidatesRes.error.message);
+        setError(friendlyError(candidatesRes.error, "We couldn't load your dashboard. Please try again."));
       } else {
         setTotalCandidates(candidatesRes.count || 0);
       }
-    } catch (err) {
-      setError('Failed to fetch dashboard data');
+    } catch {
+      setError("We couldn't load your dashboard. Please try again.");
     } finally {
-      console.log('DASHBOARD FETCH END');
       setCandidatesLoading(false);
     }
-  };
+  }, [user, router]);
 
   // Fetch interview invitations for worker
-  const fetchInterviewInvitations = async () => {
-    console.log('DASHBOARD FETCH START');
+  const fetchInterviewInvitations = useCallback(async () => {
     setInterviewsLoading(true);
     setInterviewError('');
 
@@ -116,18 +95,29 @@ export default function Dashboard() {
         .order('created_at', { ascending: false });
 
       if (error) {
-        setInterviewError(error.message);
+        setInterviewError(friendlyError(error, "We couldn't load your interview requests. Please try again."));
         return;
       }
 
       setInterviewInvitations(data || []);
-    } catch (err) {
-      setInterviewError('Failed to fetch interview requests');
+    } catch {
+      setInterviewError("We couldn't load your interview requests. Please try again.");
     } finally {
-      console.log('DASHBOARD FETCH END');
       setInterviewsLoading(false);
     }
-  };
+  }, [user]);
+
+  // Fetch dashboard data
+  useEffect(() => {
+    if (!user || !profile) return;
+
+    if (profile.role === 'employer') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- data fetch on mount, not derived state
+      fetchEmployerData();
+    } else if (profile.role === 'worker') {
+      fetchInterviewInvitations();
+    }
+  }, [user, profile, fetchEmployerData, fetchInterviewInvitations]);
 
   // Update interview status
   const updateInterviewStatus = async (invitationId: string, newStatus: 'interested' | 'not_interested') => {
@@ -142,7 +132,7 @@ export default function Dashboard() {
         .eq('id', invitationId);
 
       if (error) {
-        setInterviewError('Failed to update status');
+        setInterviewError(friendlyError(error, "We couldn't update your response. Please try again."));
         return;
       }
 
@@ -152,8 +142,8 @@ export default function Dashboard() {
       setTimeout(() => {
         setInterviewSuccess('');
       }, 3000);
-    } catch (err) {
-      setInterviewError('Failed to update status');
+    } catch {
+      setInterviewError("We couldn't update your response. Please try again.");
     } finally {
       setUpdatingInterviewId(null);
     }

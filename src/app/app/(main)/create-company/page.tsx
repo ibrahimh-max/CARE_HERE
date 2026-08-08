@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
+import { friendlyError } from '@/lib/errorMessage';
 
 export const dynamic = 'force-dynamic';
 
@@ -47,7 +48,7 @@ export default function CreateCompanyPage() {
       if (!user) return;
       
       try {
-        const { data: companyData, error } = await supabase
+        const { data: companyData } = await supabase
           .from('companies')
           .select('*')
           .eq('owner_id', user.id)
@@ -72,9 +73,10 @@ export default function CreateCompanyPage() {
     if (profile && profile.role === 'employer') {
       checkExistingCompany();
     } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- no company to check for a non-employer, so the loading flag just clears
       setCheckingCompany(false);
     }
-  }, [user?.id, profile?.role, loading, authInitialized, router]);
+  }, [user, profile, loading, authInitialized, router]);
 
   // Show loading while checking auth, profile, and company
   // Fix 5: Also wait for profile to arrive — prevents blank page race condition
@@ -166,9 +168,9 @@ export default function CreateCompanyPage() {
       // Success - redirect immediately
       router.push('/app/candidates');
 
-    } catch (err: any) {
+    } catch (err) {
       console.error('Submit error:', err);
-      setError(err?.message || 'Failed to save company. Please try again.');
+      setError(friendlyError(err, "We couldn't save your company profile. Please try again."));
     } finally {
       // Always reset submitting state so button is never permanently disabled
       setIsSubmitting(false);

@@ -1,13 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Navigation from '@/components/Navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import EmptyState from '@/components/EmptyState';
+import { friendlyError } from '@/lib/errorMessage';
 
 export const dynamic = 'force-dynamic';
+
+interface Company {
+  id: string;
+  name: string;
+}
 
 export default function PostJob() {
   const { user, profile, loading } = useAuth();
@@ -23,7 +29,7 @@ export default function PostJob() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
-  const [companies, setCompanies] = useState<any[]>([]);
+  const [companies, setCompanies] = useState<Company[]>([]);
   const [selectedCompany, setSelectedCompany] = useState('');
 
   // Redirect workers away from this page
@@ -33,14 +39,7 @@ export default function PostJob() {
     }
   }, [profile, loading, router]);
 
-  // Fetch employer's companies — use primitives to avoid re-fetch on profile object refresh
-  useEffect(() => {
-    if (user?.id && profile?.role === 'employer') {
-      fetchCompanies();
-    }
-  }, [user?.id, profile?.role]);
-
-  const fetchCompanies = async () => {
+  const fetchCompanies = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('companies')
@@ -59,7 +58,15 @@ export default function PostJob() {
     } catch (err) {
       console.error('Error in fetchCompanies:', err);
     }
-  };
+  }, [user]);
+
+  // Fetch employer's companies — use primitives to avoid re-fetch on profile object refresh
+  useEffect(() => {
+    if (user?.id && profile?.role === 'employer') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- data fetch on mount, not derived state
+      fetchCompanies();
+    }
+  }, [user?.id, profile?.role, fetchCompanies]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -81,7 +88,7 @@ export default function PostJob() {
     }
 
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('jobs')
         .insert({
           company_id: selectedCompany,
@@ -97,13 +104,13 @@ export default function PostJob() {
         .single();
 
       if (error) {
-        setError(error.message);
+        setError(friendlyError(error, "We couldn't post your opportunity. Please try again."));
         return;
       }
 
       router.push('/dashboard?message=Job posted successfully');
-    } catch (err) {
-      setError('An unexpected error occurred');
+    } catch {
+      setError("We couldn't post your opportunity. Please try again.");
     } finally {
       setSubmitting(false);
     }

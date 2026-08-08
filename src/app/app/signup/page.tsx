@@ -1,15 +1,17 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { supabase } from '@/lib/supabase';
+import { friendlyError } from '@/lib/errorMessage';
+import { useMounted } from '@/lib/useMounted';
 
 export default function Signup() {
 
   const router = useRouter();
 
-  const [mounted, setMounted] = useState(false);
+  const mounted = useMounted();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -21,11 +23,6 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
-
-  // Prevent hydration issues
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -67,7 +64,7 @@ export default function Signup() {
       });
 
       if (error) {
-        setError(error.message);
+        setError(friendlyError(error, "We couldn't create your account. Please try again."));
         setLoading(false);
         return;
       }
@@ -262,7 +259,7 @@ export default function Signup() {
                     >
                       <span className="text-2xl mb-2">🤝</span>
                       <span className="font-semibold text-sm">Offer Help</span>
-                      <span className="text-xs opacity-70 mt-0.5">I'm a helper</span>
+                      <span className="text-xs opacity-70 mt-0.5">I&apos;m a helper</span>
                     </button>
 
                     <button

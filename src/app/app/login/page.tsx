@@ -5,11 +5,13 @@ import { useRouter } from 'next/navigation';
 
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
+import { friendlyError } from '@/lib/errorMessage';
+import { useMounted } from '@/lib/useMounted';
 
 export default function Login() {
   const { user, authInitialized } = useAuth();
 
-  const [mounted, setMounted] = useState(false);
+  const mounted = useMounted();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -22,11 +24,6 @@ export default function Login() {
 
   const router = useRouter();
 
-  // Ensure client-side rendering only
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   // Redirect if already logged in - Disabled during development for easier account switching
   useEffect(() => {
     if (
@@ -36,6 +33,7 @@ export default function Login() {
       user &&
       !redirecting
     ) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- synchronizing with the router (an external system), guards against a double navigation
       setRedirecting(true);
       router.push('/app/dashboard');
     }
@@ -65,7 +63,7 @@ export default function Login() {
       });
 
       if (error) {
-        setError(error.message);
+        setError(friendlyError(error, "We couldn't sign you in. Please try again."));
         setSubmitting(false);
         return;
       }

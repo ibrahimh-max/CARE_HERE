@@ -1,10 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import Navigation from '@/components/Navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import EmptyState from '@/components/EmptyState';
+import { friendlyError } from '@/lib/errorMessage';
+
+type CSSVarStyle = React.CSSProperties & { '--tw-ring-color'?: string };
 
 interface JobWithCompany {
   id: string;
@@ -52,7 +55,6 @@ const STATUS_STYLES: Record<string, { bg: string; color: string }> = {
 export default function Jobs() {
   const { user, profile } = useAuth();
   const [jobs, setJobs] = useState<JobWithCompany[]>([]);
-  const [filteredJobs, setFilteredJobs] = useState<JobWithCompany[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [applying, setApplying] = useState<string | null>(null);
@@ -63,47 +65,71 @@ export default function Jobs() {
   const [uniqueLocations, setUniqueLocations] = useState<string[]>([]);
   const [uniqueJobTypes, setUniqueJobTypes] = useState<string[]>([]);
 
-  useEffect(() => { fetchJobs(); }, []);
+  const fetchJobs = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError('');
 
-  useEffect(() => {
-    let filtered = jobs;
-    if (searchTerm) {
-      const q = searchTerm.toLowerCase();
-      filtered = filtered.filter(j =>
-        j.title.toLowerCase().includes(q) || j.companies?.name.toLowerCase().includes(q)
-      );
-    }
-    if (selectedLocation) filtered = filtered.filter(j => j.location === selectedLocation);
-    if (selectedJobType) filtered = filtered.filter(j => j.job_type === selectedJobType);
-    setFilteredJobs(filtered);
-  }, [searchTerm, selectedLocation, selectedJobType, jobs]);
+      // Guest / employer query
+      if (!user || profile?.role !== 'worker') {
+        const { data, error } = await supabase
+          .from('jobs')
+          .select(`
+            *,
+            companies(name)
+          `)
+          .order('created_at', { ascending: false });
 
-const fetchJobs = async () => {
-  try {
+        if (error) {
+          setError(friendlyError(error, "We couldn't load jobs. Please try again."));
+          return;
+        }
 
-    setLoading(true);
-    setError('');
+        const processed = data || [];
 
-    // Guest / employer query
-    if (!user || profile?.role !== 'worker') {
+        setJobs(processed);
 
+        setUniqueLocations([
+          ...new Set(processed.map(j => j.location).filter(Boolean))
+        ]);
+
+        setUniqueJobTypes([
+          ...new Set(processed.map(j => j.job_type).filter(Boolean))
+        ]);
+
+        return;
+      }
+
+      // Worker query (only fetch THIS user's applications)
       const { data, error } = await supabase
         .from('jobs')
         .select(`
           *,
-          companies(name)
+          companies(name),
+          applications(
+            id,
+            status,
+            user_id
+          )
         `)
+        .eq('applications.user_id', user.id)
         .order('created_at', { ascending: false });
 
       if (error) {
-        setError(error.message);
+        setError(friendlyError(error, "We couldn't load jobs. Please try again."));
         return;
       }
 
-      const processed = data || [];
+      const processed =
+        data?.map(job => ({
+          ...job,
+          applications:
+            job.applications?.filter(
+              (app: { user_id: string }) => app.user_id === user.id
+            ) || [],
+        })) || [];
 
       setJobs(processed);
-      setFilteredJobs(processed);
 
       setUniqueLocations([
         ...new Set(processed.map(j => j.location).filter(Boolean))
@@ -113,55 +139,28 @@ const fetchJobs = async () => {
         ...new Set(processed.map(j => j.job_type).filter(Boolean))
       ]);
 
-      return;
+    } catch {
+      setError("We couldn't load jobs. Please try again.");
+    } finally {
+      setLoading(false);
     }
+  }, [user, profile]);
 
-    // Worker query (only fetch THIS user's applications)
-    const { data, error } = await supabase
-      .from('jobs')
-      .select(`
-        *,
-        companies(name),
-        applications(
-          id,
-          status,
-          user_id
-        )
-      `)
-      .eq('applications.user_id', user.id)
-      .order('created_at', { ascending: false });
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- data fetch on mount, not derived state
+  useEffect(() => { fetchJobs(); }, [fetchJobs]);
 
-    if (error) {
-      setError(error.message);
-      return;
+  const filteredJobs = useMemo(() => {
+    let filtered = jobs;
+    if (searchTerm) {
+      const q = searchTerm.toLowerCase();
+      filtered = filtered.filter(j =>
+        j.title.toLowerCase().includes(q) || j.companies?.name.toLowerCase().includes(q)
+      );
     }
-
-    const processed =
-      data?.map(job => ({
-        ...job,
-        applications:
-          job.applications?.filter(
-            (app: any) => app.user_id === user.id
-          ) || [],
-      })) || [];
-
-    setJobs(processed);
-    setFilteredJobs(processed);
-
-    setUniqueLocations([
-      ...new Set(processed.map(j => j.location).filter(Boolean))
-    ]);
-
-    setUniqueJobTypes([
-      ...new Set(processed.map(j => j.job_type).filter(Boolean))
-    ]);
-
-  } catch {
-    setError('Failed to fetch jobs');
-  } finally {
-    setLoading(false);
-  }
-};
+    if (selectedLocation) filtered = filtered.filter(j => j.location === selectedLocation);
+    if (selectedJobType) filtered = filtered.filter(j => j.job_type === selectedJobType);
+    return filtered;
+  }, [jobs, searchTerm, selectedLocation, selectedJobType]);
 
   const handleApply = async (jobId: string) => {
     if (!user || profile?.role !== 'worker') { setError('Only helpers can apply for jobs'); return; }
@@ -179,11 +178,11 @@ const fetchJobs = async () => {
         .select().single();
 
       if (error) {
-        setError(error.code === '23505' ? 'You have already applied for this job' : error.message);
+        setError(error.code === '23505' ? 'You have already applied for this job.' : friendlyError(error, "We couldn't submit your application. Please try again."));
         return;
       }
       await fetchJobs();
-    } catch { setError('Failed to apply for job'); }
+    } catch { setError("We couldn't submit your application. Please try again."); }
     finally { setApplying(null); }
   };
 
@@ -266,7 +265,7 @@ const fetchJobs = async () => {
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
                 className="w-full pl-9 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent bg-gray-50"
-                style={{ '--tw-ring-color': BRAND } as any}
+                style={{ '--tw-ring-color': BRAND } as CSSVarStyle}
               />
             </div>
 
