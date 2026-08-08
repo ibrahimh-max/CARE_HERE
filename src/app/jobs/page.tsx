@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
+import EmptyState from '@/components/EmptyState';
 
 interface JobWithCompany {
   id: string;
@@ -325,31 +326,20 @@ const fetchJobs = async () => {
 
         {/* Empty state */}
         {filteredJobs.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-2xl border border-gray-100">
-            <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-4">
-              <svg className="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-            {jobs.length === 0 ? (
-              <>
-                <p className="text-gray-700 font-medium">No jobs available yet</p>
-                <p className="text-gray-400 text-sm mt-1">Check back soon for new opportunities</p>
-              </>
-            ) : (
-              <>
-                <p className="text-gray-700 font-medium">No jobs match your filters</p>
-                <p className="text-gray-400 text-sm mt-1">Try adjusting your search</p>
-                <button
-                  onClick={clearFilters}
-                  className="mt-4 px-4 py-2 text-sm font-medium text-white rounded-lg transition-all"
-                  style={{ background: BRAND }}
-                >
-                  Clear filters
-                </button>
-              </>
-            )}
-          </div>
+          jobs.length === 0 ? (
+            <EmptyState
+              icon="search"
+              title="No jobs available yet"
+              description="New opportunities are posted regularly — check back soon."
+            />
+          ) : (
+            <EmptyState
+              icon="search"
+              title="No jobs match your search"
+              description="Try adjusting your filters or searching different terms."
+              action={{ label: 'Clear filters', onClick: clearFilters }}
+            />
+          )
         ) : (
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {filteredJobs.map(job => {

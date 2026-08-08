@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { InterviewInvitation } from '@/lib/supabase';
+import EmptyState from '@/components/EmptyState';
 
 export const dynamic = 'force-dynamic';
 
@@ -344,13 +345,11 @@ export default function Dashboard() {
                     ))}
                   </div>
                 ) : interviewInvitations.length === 0 ? (
-                  <div className="empty-state">
-                    <div className="empty-state-icon">📫</div>
-                    <h3 className="empty-state-title">No help requests yet</h3>
-                    <p className="empty-state-desc">
-                      When requesters want to connect with you, their requests will appear here.
-                    </p>
-                  </div>
+                  <EmptyState
+                    icon="inbox"
+                    title="No help requests yet"
+                    description="Employers who want to connect with you will show up here. Keep your profile complete to get noticed."
+                  />
                 ) : (
                   <div className="space-y-4">
                     {interviewInvitations.map((invitation) => (

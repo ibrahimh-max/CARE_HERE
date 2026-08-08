@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { InterviewInvitation } from '@/lib/supabase';
+import EmptyState from '@/components/EmptyState';
 
 export const dynamic = 'force-dynamic';
 
@@ -286,13 +287,12 @@ export default function RequestsPage() {
                   ))}
                 </div>
               ) : requests.length === 0 ? (
-                <div className="empty-state mt-8">
-                  <div className="empty-state-icon">📭</div>
-                  <h3 className="empty-state-title">No Help Requests Sent</h3>
-                  <p className="empty-state-desc">
-                    When you invite helpers to connect, the requests will appear here.
-                  </p>
-                </div>
+                <EmptyState
+                  className="mt-8"
+                  icon="send"
+                  title="No help requests sent"
+                  description="Invite a helper from the candidates list and your requests will show up here."
+                />
               ) : (
                 <div className="space-y-4">
                   {requests.map((request) => (
@@ -379,13 +379,12 @@ export default function RequestsPage() {
                   ))}
                 </div>
               ) : workerInvitations.length === 0 ? (
-                <div className="empty-state mt-8">
-                  <div className="empty-state-icon">📬</div>
-                  <h3 className="empty-state-title">No Help Requests Yet</h3>
-                  <p className="empty-state-desc">
-                    Requesters will be able to invite you here.
-                  </p>
-                </div>
+                <EmptyState
+                  className="mt-8"
+                  icon="inbox"
+                  title="No help requests yet"
+                  description="When an employer invites you to connect, it'll show up here."
+                />
               ) : (
                 <div className="space-y-4">
                   {workerInvitations.map((invitation) => (

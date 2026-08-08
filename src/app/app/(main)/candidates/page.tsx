@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
+import EmptyState from '@/components/EmptyState';
 
 export const dynamic = 'force-dynamic';
 
@@ -371,21 +372,22 @@ export default function CandidatesPage() {
               ))}
             </div>
           ) : filteredCandidates.length === 0 ? (
-            <div className="empty-state mt-8">
-              <div className="empty-state-icon">🔍</div>
-              <h3 className="empty-state-title">No Helpers Found</h3>
-              <p className="empty-state-desc mb-6">
-                Try adjusting your filters to see more results.
-              </p>
-              {candidates.length > 0 && (
-                <button
-                  onClick={clearFilters}
-                  className="btn-primary"
-                >
-                  Clear filters
-                </button>
-              )}
-            </div>
+            candidates.length > 0 ? (
+              <EmptyState
+                className="mt-8"
+                icon="search"
+                title="No helpers match your filters"
+                description="Try widening your search or clearing a filter to see more candidates."
+                action={{ label: 'Clear filters', onClick: clearFilters }}
+              />
+            ) : (
+              <EmptyState
+                className="mt-8"
+                icon="users"
+                title="No available talent yet"
+                description="Helpers who join and complete their profile will appear here."
+              />
+            )
           ) : (
             <div className="space-y-5 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
               {filteredCandidates.map((candidate) => (
