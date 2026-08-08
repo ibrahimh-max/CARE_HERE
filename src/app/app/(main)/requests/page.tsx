@@ -168,7 +168,7 @@ export default function RequestsPage() {
   // Initial auth loading (non-blocking UI)
   if (loading || !authInitialized) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="bg-background">
         <div className="page-container space-y-6">
           <div className="page-header flex justify-between items-end">
             <div className="space-y-2">
@@ -206,7 +206,7 @@ export default function RequestsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <div className="page-container">
 
         {/* App-like header */}
@@ -230,7 +230,7 @@ export default function RequestsPage() {
 
           {/* Stats Header (Tab-like) */}
           {!pageLoading && (profile?.role === 'employer' ? requests.length > 0 : workerInvitations.length > 0) && (
-            <div className="flex gap-2 overflow-x-auto pb-4 mb-2 animate-fade-in-up hide-scrollbar" style={{ animationDelay: '0.1s' }}>
+            <div className="flex gap-2 overflow-x-auto pb-4 mb-2 animate-fade-in-up scroll-snap-x" style={{ animationDelay: '0.1s' }}>
               <div className="card-surface px-4 py-3 flex items-center gap-3 flex-shrink-0 min-w-[120px]">
                 <div className="w-8 h-8 rounded-full bg-warning/10 text-warning flex items-center justify-center font-bold">
                   {(profile?.role === 'employer' ? requests : workerInvitations).filter(r => r.status === 'pending').length}
@@ -405,7 +405,7 @@ export default function RequestsPage() {
 
                           {/* Status / Actions */}
                           {invitation.status === 'pending' ? (
-                            <div className="flex gap-2 mt-2">
+                            <div className="flex gap-3 mt-2">
                               <button
                                 onClick={() => updateInterviewStatus(invitation.id, 'interested')}
                                 disabled={updatingId === invitation.id}

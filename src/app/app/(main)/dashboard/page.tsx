@@ -152,7 +152,7 @@ export default function Dashboard() {
   // Initial auth loading (non-blocking UI)
   if (loading || !authInitialized) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="bg-background">
         <div className="page-container space-y-6">
           <div className="page-header space-y-2">
             <div className="skeleton h-4 w-28 rounded"></div>
@@ -186,7 +186,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <div className="page-container">
 
         {/* App-like header */}
@@ -247,7 +247,7 @@ export default function Dashboard() {
               </p>
               <button
                 onClick={() => window.location.reload()}
-                className="bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary-dark transition-colors"
+                className="inline-flex items-center justify-center min-h-12 bg-primary text-white px-5 rounded-xl hover:bg-primary-dark transition-colors"
               >
                 Refresh
               </button>
@@ -301,7 +301,7 @@ export default function Dashboard() {
                           {isComplete ? 'Requesters can now discover you.' : 'Add your details to get connected faster.'}
                         </p>
                         {!isComplete && (
-                          <Link href="/app/profile" className="text-primary font-bold text-sm flex items-center gap-1 hover:text-primary-dark">
+                          <Link href="/app/profile" className="tap-inline text-primary font-bold text-sm inline-flex items-center gap-1 hover:text-primary-dark">
                             Complete now
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                           </Link>
@@ -362,7 +362,7 @@ export default function Dashboard() {
                             </p>
                             
                             {invitation.status === 'pending' ? (
-                              <div className="flex gap-2 mt-4">
+                              <div className="flex gap-3 mt-4">
                                 <button
                                   onClick={() => updateInterviewStatus(invitation.id, 'interested')}
                                   disabled={updatingInterviewId === invitation.id}

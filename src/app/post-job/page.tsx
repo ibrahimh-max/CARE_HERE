@@ -193,7 +193,7 @@ export default function PostJob() {
                       id="company"
                       value={selectedCompany}
                       onChange={(e) => setSelectedCompany(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      className="w-full min-h-12 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                       required
                     >
                       {companies.map(company => (
@@ -214,7 +214,7 @@ export default function PostJob() {
                       name="title"
                       value={formData.title}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      className="w-full min-h-12 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                       placeholder="e.g. Front Desk Receptionist"
                       required
                     />
@@ -230,7 +230,7 @@ export default function PostJob() {
                       value={formData.description}
                       onChange={handleChange}
                       rows={6}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      className="w-full min-h-12 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                       placeholder="Describe the role, responsibilities, and requirements..."
                       required
                     />
@@ -247,7 +247,7 @@ export default function PostJob() {
                         name="pay"
                         value={formData.pay}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                        className="w-full min-h-12 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                         placeholder="e.g. $18/hour or $45,000/year"
                         required
                       />
@@ -263,7 +263,7 @@ export default function PostJob() {
                         name="location"
                         value={formData.location}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                        className="w-full min-h-12 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                         placeholder="e.g. New York, NY"
                         required
                       />
@@ -280,7 +280,7 @@ export default function PostJob() {
                         name="job_type"
                         value={formData.job_type}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                        className="w-full min-h-12 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                         required
                       >
                         <option value="full-time">Full-time</option>
@@ -299,7 +299,7 @@ export default function PostJob() {
                         name="shift_timing"
                         value={formData.shift_timing}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                        className="w-full min-h-12 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                         required
                       >
                         <option value="morning">Morning</option>
@@ -321,24 +321,24 @@ export default function PostJob() {
                         value={formData.workers_needed}
                         onChange={handleChange}
                         min="1"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                        className="w-full min-h-12 px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                         required
                       />
                     </div>
                   </div>
                   
-                  <div className="flex gap-4 pt-4">
+                  <div className="flex flex-col sm:flex-row gap-3 pt-4 pb-4">
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="flex-1 bg-primary text-white py-2.5 px-4 rounded-xl hover:bg-primary-dark transition-colors disabled:bg-primary/50 font-medium shadow-sm"
+                      className="flex-1 min-h-12 bg-primary text-white py-2.5 px-4 rounded-xl hover:bg-primary-dark transition-colors disabled:bg-primary/50 font-medium shadow-sm"
                     >
                       {submitting ? 'Posting Opportunity...' : 'Post Opportunity'}
                     </button>
                     <button
                       type="button"
                       onClick={() => router.push('/dashboard')}
-                      className="flex-1 bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl hover:bg-gray-300 transition-colors font-medium"
+                      className="flex-1 min-h-12 bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl hover:bg-gray-300 transition-colors font-medium"
                     >
                       Cancel
                     </button>

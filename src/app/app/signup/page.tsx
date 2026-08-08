@@ -88,9 +88,9 @@ export default function Signup() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-background flex flex-col">
+      <div className="auth-shell bg-background">
         <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primary-dark"></div>
-        <div className="flex-1 flex flex-col justify-center">
+        <div className="auth-shell__center">
           <div className="page-container w-full space-y-6">
             <div className="text-center mb-10 space-y-2 flex flex-col items-center">
               <div className="skeleton h-10 w-36 rounded-xl"></div>
@@ -126,11 +126,11 @@ export default function Signup() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="auth-shell bg-background">
       {/* Top Accent Strip */}
       <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primary-dark"></div>
 
-      <div className="flex-1 flex flex-col justify-center">
+      <div className="auth-shell__center">
         <div className="page-container w-full animate-fade-in-up">
 
           {/* Brand Header */}
@@ -305,7 +305,7 @@ export default function Signup() {
                 Already have an account?{' '}
                 <a
                   href="/app/login"
-                  className="text-primary hover:text-primary-dark font-bold ml-1 transition-colors"
+                  className="tap-inline text-primary hover:text-primary-dark font-bold ml-1 transition-colors"
                 >
                   Sign in
                 </a>

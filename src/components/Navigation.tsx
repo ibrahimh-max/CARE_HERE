@@ -10,7 +10,10 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="bg-white border-b border-primary/10 sticky top-0 z-50">
+    <nav
+      className="bg-white border-b border-primary/10 sticky top-0 z-50"
+      style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
+    >
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
 
@@ -22,7 +25,7 @@ export default function Navigation() {
           </div>
 
           {/* Right — auth */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             {user ? (
               <>
                 {/* Role pill */}
@@ -39,13 +42,13 @@ export default function Navigation() {
                 )}
 
                 {/* Name */}
-                <span className="text-sm text-foreground/40">
+                <span className="text-sm text-foreground/40 hidden sm:inline">
                   {profile?.name?.split(' ')[0] || 'User'}
                 </span>
 
                 <button
                   onClick={handleLogout}
-                  className="text-sm font-medium text-foreground/60 hover:text-foreground px-3 py-1.5 rounded-lg hover:bg-primary/5 transition-all"
+                  className="inline-flex items-center justify-center min-h-12 text-sm font-medium text-foreground/60 hover:text-foreground px-3 rounded-lg hover:bg-primary/5 transition-all"
                 >
                   Log out
                 </button>
@@ -54,13 +57,13 @@ export default function Navigation() {
               <>
                 <a
                   href="/app/login"
-                  className="text-sm font-medium text-foreground/60 hover:text-foreground px-3 py-1.5 rounded-lg hover:bg-primary/5 transition-all"
+                  className="inline-flex items-center justify-center min-h-12 text-sm font-medium text-foreground/60 hover:text-foreground px-3 rounded-lg hover:bg-primary/5 transition-all"
                 >
                   Log in
                 </a>
                 <a
                   href="/app/signup"
-                  className="text-sm font-medium text-white px-4 py-2 rounded-lg transition-all bg-primary hover:bg-primary-dark"
+                  className="inline-flex items-center justify-center min-h-12 text-sm font-medium text-white px-4 rounded-lg transition-all bg-primary hover:bg-primary-dark"
                 >
                   Sign up
                 </a>

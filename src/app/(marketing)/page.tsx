@@ -18,11 +18,11 @@ export default function HomePage() {
         </div>
 
         <div className="flex items-center justify-center gap-6 w-full sm:w-auto">
-          <a href="#how-it-works" className="text-xs sm:text-sm font-semibold tracking-wide uppercase text-foreground/80 hover:text-primary transition-colors">
+          <a href="#how-it-works" className="tap-inline text-xs sm:text-sm font-semibold tracking-wide uppercase text-foreground/80 hover:text-primary transition-colors">
             How It Works
           </a>
 
-          <a href="#roles" className="text-xs sm:text-sm font-semibold tracking-wide uppercase text-foreground/80 hover:text-primary transition-colors">
+          <a href="#roles" className="tap-inline text-xs sm:text-sm font-semibold tracking-wide uppercase text-foreground/80 hover:text-primary transition-colors">
             Roles
           </a>
 
@@ -298,10 +298,10 @@ export default function HomePage() {
           </div>
 
           <div className="flex items-center gap-6 text-xs font-bold text-foreground/60">
-            <Link href="/privacy-policy" className="hover:text-primary transition-colors">
+            <Link href="/privacy-policy" className="tap-inline hover:text-primary transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-primary transition-colors">
+            <Link href="/terms" className="tap-inline hover:text-primary transition-colors">
               Terms & Conditions
             </Link>
           </div>

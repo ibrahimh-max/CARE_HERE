@@ -185,7 +185,7 @@ export default function CandidatesPage() {
   // Initial auth loading
   if (loading || !authInitialized) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="bg-background">
         <div className="page-container space-y-6">
           <div className="page-header flex justify-between items-end">
             <div className="space-y-2">
@@ -222,7 +222,7 @@ export default function CandidatesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <div className="page-container">
 
         {/* App-like header */}
@@ -276,7 +276,7 @@ export default function CandidatesPage() {
               <div className="card-surface p-5 mt-2 space-y-4 animate-fade-in-up">
                 <div className="flex justify-between items-center mb-1">
                   <h3 className="font-bold text-sm text-foreground/50 uppercase tracking-wider">Refine Search</h3>
-                  <button onClick={clearFilters} className="text-sm font-bold text-primary hover:text-primary-dark">
+                  <button onClick={clearFilters} className="tap-inline text-sm font-bold text-primary hover:text-primary-dark">
                     Clear all
                   </button>
                 </div>

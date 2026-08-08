@@ -83,7 +83,7 @@ export default function CreateCompanyPage() {
   // when authInitialized becomes true before fetchProfile completes
   if (loading || !authInitialized || !profile || checkingCompany) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="bg-background">
         <div className="page-container space-y-6">
           <div className="page-header text-center space-y-3 flex flex-col items-center">
             <div className="skeleton w-24 h-24 rounded-full"></div>
@@ -178,7 +178,7 @@ export default function CreateCompanyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <div className="page-container">
 
         {/* Header */}

@@ -264,7 +264,7 @@ export default function Jobs() {
                 placeholder="Search job title or company..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent bg-gray-50"
+                className="w-full min-h-12 pl-9 pr-4 py-2.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent bg-gray-50"
                 style={{ '--tw-ring-color': BRAND } as CSSVarStyle}
               />
             </div>
@@ -272,7 +272,7 @@ export default function Jobs() {
             <select
               value={selectedLocation}
               onChange={e => setSelectedLocation(e.target.value)}
-              className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent bg-gray-50 text-gray-700"
+              className="w-full min-h-12 px-3 py-2.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent bg-gray-50 text-gray-700"
             >
               <option value="">All locations</option>
               {uniqueLocations.map(l => <option key={l} value={l}>{l}</option>)}
@@ -281,7 +281,7 @@ export default function Jobs() {
             <select
               value={selectedJobType}
               onChange={e => setSelectedJobType(e.target.value)}
-              className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent bg-gray-50 text-gray-700"
+              className="w-full min-h-12 px-3 py-2.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent bg-gray-50 text-gray-700"
             >
               <option value="">All types</option>
               {uniqueJobTypes.map(t => (
@@ -292,26 +292,26 @@ export default function Jobs() {
 
           {/* Active filter chips */}
           {hasFilters && (
-            <div className="mt-3 flex flex-wrap gap-2 items-center">
+            <div className="mt-3 flex flex-wrap gap-3 items-center">
               {searchTerm && (
                 <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
                   &ldquo;{searchTerm}&rdquo;
-                  <button onClick={() => setSearchTerm('')} className="ml-1 text-gray-400 hover:text-gray-700">×</button>
+                  <button onClick={() => setSearchTerm('')} className="ml-1 p-2 -m-2 text-gray-400 hover:text-gray-700" aria-label="Clear search">×</button>
                 </span>
               )}
               {selectedLocation && (
                 <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
                   {selectedLocation}
-                  <button onClick={() => setSelectedLocation('')} className="ml-1 text-gray-400 hover:text-gray-700">×</button>
+                  <button onClick={() => setSelectedLocation('')} className="ml-1 p-2 -m-2 text-gray-400 hover:text-gray-700" aria-label="Clear location filter">×</button>
                 </span>
               )}
               {selectedJobType && (
                 <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium" style={JOB_TYPE_STYLES[selectedJobType] ? { background: JOB_TYPE_STYLES[selectedJobType].bg, color: JOB_TYPE_STYLES[selectedJobType].color } : { background: '#f3f4f6', color: '#374151' }}>
                   {JOB_TYPE_STYLES[selectedJobType]?.label || selectedJobType}
-                  <button onClick={() => setSelectedJobType('')} className="ml-1 opacity-60 hover:opacity-100">×</button>
+                  <button onClick={() => setSelectedJobType('')} className="ml-1 p-2 -m-2 opacity-60 hover:opacity-100" aria-label="Clear job type filter">×</button>
                 </span>
               )}
-              <button onClick={clearFilters} className="text-xs text-gray-400 hover:text-gray-700 underline underline-offset-2">
+              <button onClick={clearFilters} className="tap-inline text-xs text-gray-400 hover:text-gray-700 underline underline-offset-2">
                 Clear all
               </button>
             </div>
@@ -396,7 +396,7 @@ export default function Jobs() {
                   {user && profile?.role === 'worker' ? (
                     hasApplied ? (
                       <div
-                        className="w-full py-2.5 px-4 rounded-xl text-center text-sm font-medium"
+                        className="w-full min-h-12 flex items-center justify-center py-2.5 px-4 rounded-xl text-center text-sm font-medium"
                         style={{ background: statusStyle?.bg || '#f3f4f6', color: statusStyle?.color || '#374151' }}
                       >
                         Applied · {appStatus!.charAt(0).toUpperCase() + appStatus!.slice(1)}
@@ -405,20 +405,20 @@ export default function Jobs() {
                       <button
                         onClick={() => handleApply(job.id)}
                         disabled={applying === job.id}
-                        className="w-full py-2.5 px-4 rounded-xl text-sm font-medium text-white transition-all disabled:opacity-60"
+                        className="w-full min-h-12 py-2.5 px-4 rounded-xl text-sm font-medium text-white transition-all disabled:opacity-60"
                         style={{ background: applying === job.id ? '#a8a4f0' : BRAND }}
                       >
                         {applying === job.id ? 'Applying...' : 'Apply now'}
                       </button>
                     )
                   ) : user ? (
-                    <div className="w-full bg-gray-50 text-gray-400 py-2.5 px-4 rounded-xl text-center text-sm">
+                    <div className="w-full min-h-12 flex items-center justify-center bg-gray-50 text-gray-400 py-2.5 px-4 rounded-xl text-center text-sm">
                       Only helpers can apply
                     </div>
                   ) : (
                     <button
                       onClick={() => window.location.href = '/login'}
-                      className="w-full py-2.5 px-4 rounded-xl text-sm font-medium text-white transition-all"
+                      className="w-full min-h-12 py-2.5 px-4 rounded-xl text-sm font-medium text-white transition-all"
                       style={{ background: BRAND }}
                       onMouseEnter={e => (e.currentTarget.style.background = BRAND_DARK)}
                       onMouseLeave={e => (e.currentTarget.style.background = BRAND)}

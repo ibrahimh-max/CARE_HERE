@@ -163,7 +163,7 @@ export default function ProfilePage() {
   // Initial auth loading (non-blocking UI)
   if (loading || !authInitialized) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="bg-background">
         <div className="page-container space-y-6">
           <div className="flex flex-col items-center mb-8 space-y-3">
             <div className="skeleton w-24 h-24 rounded-full"></div>
@@ -190,7 +190,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <div className="page-container">
 
         {/* Profile header with avatar */}
@@ -199,7 +199,7 @@ export default function ProfilePage() {
               <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-4xl text-white font-bold shadow-lg ring-4 ring-white mb-4">
                 {formData.name ? formData.name.charAt(0).toUpperCase() : '👤'}
               </div>
-              <button className="absolute bottom-4 right-0 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center text-primary hover:bg-gray-50 transition-colors border border-gray-100">
+              <button className="absolute bottom-2 right-0 w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center text-primary hover:bg-gray-50 transition-colors border border-gray-100">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
               </button>
             </div>
@@ -234,7 +234,7 @@ export default function ProfilePage() {
                 <h3 className="font-bold text-foreground">Open to Opportunities</h3>
                 <p className="text-sm text-foreground/60 mt-0.5">When on, requesters can discover and invite you</p>
               </div>
-              <label className="relative inline-flex items-center cursor-pointer">
+              <label className="relative inline-flex items-center justify-center cursor-pointer min-w-12 min-h-12 -m-2">
                 <input
                   type="checkbox"
                   name="is_available"
@@ -242,7 +242,7 @@ export default function ProfilePage() {
                   onChange={handleChange}
                   className="sr-only peer"
                 />
-                <div className="w-14 h-8 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-success shadow-inner"></div>
+                <div className="w-14 h-8 bg-gray-200 rounded-full peer peer-checked:after:translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-success shadow-inner peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2"></div>
               </label>
             </div>
 
@@ -426,8 +426,11 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            {/* Submit Button - Sticky at bottom */}
-            <div className="sticky bottom-20 z-10 pt-4 pb-2 bg-background/80 backdrop-blur-md">
+            {/* Submit Button - Sticky at bottom, exactly above the bottom nav */}
+            <div
+              className="sticky z-10 pt-4 pb-2 bg-background/80 backdrop-blur-md"
+              style={{ bottom: 'var(--bottom-nav-total-height)' }}
+            >
               <button
                 type="submit"
                 disabled={isSaving}
@@ -481,12 +484,12 @@ export default function ProfilePage() {
             <p className="text-foreground/70 mb-6">
               Are you sure you want to permanently delete your account?
             </p>
-            <div className="flex gap-3">
+            <div className="flex flex-col gap-3">
               <button
                 type="button"
                 onClick={() => setShowDeleteModal(false)}
                 disabled={isDeleting}
-                className="flex-1 px-4 py-2 rounded-xl border border-primary/20 text-foreground font-medium hover:bg-background transition-colors"
+                className="min-h-12 px-4 rounded-xl border border-primary/20 text-foreground font-medium hover:bg-background transition-colors"
               >
                 Cancel
               </button>
@@ -494,7 +497,7 @@ export default function ProfilePage() {
                 type="button"
                 onClick={handleDeleteAccount}
                 disabled={isDeleting}
-                className="flex-1 px-4 py-2 rounded-xl bg-red-600 text-white font-medium hover:bg-red-700 transition-colors flex items-center justify-center"
+                className="min-h-12 px-4 rounded-xl bg-red-600 text-white font-medium hover:bg-red-700 transition-colors flex items-center justify-center"
               >
                 {isDeleting ? (
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>

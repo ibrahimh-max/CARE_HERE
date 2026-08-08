@@ -36,7 +36,7 @@ export default function MobileLayout({
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {profile?.name && (
             <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm">
               {profile.name.charAt(0).toUpperCase()}
@@ -45,7 +45,7 @@ export default function MobileLayout({
 
           <button
             onClick={signOut}
-            className="text-red-500 hover:bg-red-50 relative z-50 flex items-center justify-center h-10 w-10 rounded-full cursor-pointer transition-colors"
+            className="text-red-500 hover:bg-red-50 active:bg-red-100 relative z-50 flex items-center justify-center h-12 w-12 rounded-full cursor-pointer transition-colors"
             aria-label="Logout"
             style={{ WebkitTapHighlightColor: 'transparent' }}
           >

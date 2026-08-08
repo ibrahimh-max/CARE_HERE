@@ -22,6 +22,16 @@
   --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
   --shadow-card-hover: 0 10px 30px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
   --shadow-elevated: 0 12px 40px rgba(0, 0, 0, 0.12);
+
+  /* Shared mobile-shell measurements — referenced by MobileLayout, BottomNav,
+     and any page content that needs to sit exactly above the bottom nav
+     (e.g. a sticky submit button) so the two never drift out of sync. */
+  --mobile-header-height: 64px;
+  --bottom-nav-height: 64px;
+  --bottom-nav-total-height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px));
+
+  /* Minimum comfortable tap target per WCAG 2.5.5 / Apple & Material guidance. */
+  --tap-target-min: 48px;
 }
 
 @theme inline {
@@ -71,7 +81,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .input-field {
   width: 100%;
+  min-height: var(--tap-target-min);
   padding: 14px 16px;
+  /* 16px minimum stops iOS Safari from force-zooming the page on focus. */
+  font-size: 16px;
   border-radius: var(--radius-input);
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: #ffffff;
@@ -86,6 +99,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-primary {
   width: 100%;
+  min-height: var(--tap-target-min);
   padding: 14px 20px;
   background: var(--primary);
   color: #ffffff;
@@ -112,6 +126,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-secondary {
   width: 100%;
+  min-height: var(--tap-target-min);
   padding: 14px 20px;
   background: rgba(0, 0, 0, 0.05);
   color: var(--foreground);
@@ -137,6 +152,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-outline {
   width: 100%;
+  min-height: var(--tap-target-min);
   padding: 14px 20px;
   background: transparent;
   color: var(--foreground);
@@ -355,7 +371,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: var(--mobile-header-height);
   padding: 0 20px;
   padding-top: env(safe-area-inset-top, 0);
   background: rgba(247, 248, 250, 0.85);
@@ -396,10 +412,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .mobile-content {
   flex: 1;
+  min-height: 0; /* let this flex child scroll instead of stretching the page */
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  /* Leave space for header (56px) and bottom nav (72px + safe-area) */
-  padding-bottom: calc(72px + env(safe-area-inset-bottom, 16px));
+  overscroll-behavior-y: contain;
+  /* Leave space for the fixed bottom nav so content never sits under it. */
+  padding-bottom: calc(var(--bottom-nav-total-height) + 16px);
 }
 
 /* ─── Bottom Navigation ─── */
@@ -421,7 +439,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 64px;
+  height: var(--bottom-nav-height);
   max-width: 480px;
   margin: 0 auto;
   padding: 0 4px;
@@ -509,4 +527,74 @@ h1, h2, h3, h4, h5, h6 {
   text-overflow: ellipsis;
   max-width: 100%;
   text-align: center;
+}
+
+/* Horizontally-scrolling chip/card rows (e.g. stat summaries) — snaps each
+   item into place so a swipe doesn't leave content stranded mid-card. */
+.scroll-snap-x {
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-snap-x > * {
+  scroll-snap-align: start;
+}
+
+/* Expands the tap area of an inline text link (e.g. "Sign up" inside a
+   sentence) to ~48px tall without shifting surrounding text — the padding
+   and negative margin cancel out visually. */
+.tap-inline {
+  display: inline-block;
+  padding: 12px 6px;
+  margin: -12px -6px;
+}
+
+/* ─── Auth pages (login/signup) ───
+   Centered vertically by default; on short/landscape viewports that would
+   clip the top or bottom of the card, so switch to top-aligned + scrollable. */
+.auth-shell {
+  min-height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-shell__center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 0;
+  overflow-y: auto;
+}
+
+@media (max-height: 700px) {
+  .auth-shell__center {
+    justify-content: flex-start;
+  }
+}
+
+/* ─── Landscape phones ───
+   In landscape, viewport height is short (often <450px), so the fixed
+   header + bottom nav can eat a third of the screen. Shrink both — icons
+   stay ≥48px tap targets, only the extra padding/label is trimmed. */
+@media (max-height: 500px) and (orientation: landscape) {
+  :root {
+    --mobile-header-height: 48px;
+    --bottom-nav-height: 48px;
+  }
+
+  .bottom-nav__item {
+    flex-direction: row;
+    gap: 6px;
+    padding: 0 8px;
+  }
+
+  .bottom-nav__label {
+    font-size: 0.7rem;
+  }
+
+  .bottom-nav__indicator {
+    display: none;
+  }
 }
